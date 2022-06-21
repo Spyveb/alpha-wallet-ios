@@ -45,16 +45,43 @@ class WalletCoordinator: Coordinator {
             controller.delegate = self
             controller.watchAddressTextField.value = address?.eip55String ?? ""
             controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.cancel(), style: .plain, target: self, action: #selector(dismiss))
-            controller.showWatchTab()
+            controller.showWatchTab() 
+            if address == nil {
+                navigationController.viewControllers = [controller]
+            }
+            importWalletViewController = controller
+            if address != nil {
+                mainThread(0.1) {
+                    controller.importWallet()
+                }
+            }
+        case .privateKey(let address):
+            let controller = ImportWalletViewController(keystore: keystore, analyticsCoordinator: analyticsCoordinator)
+            controller.delegate = self
+            controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.cancel(), style: .plain, target: self, action: #selector(dismiss))
             navigationController.viewControllers = [controller]
             importWalletViewController = controller
+            controller.set(tabSelection: .privateKey)
+            controller.setValueForCurrentField(string: address)
+            mainThread(0.1) {
+                controller.importWallet()
+            }
         case .createInstantWallet:
             createInstantWallet()
             return false
         case .addInitialWallet:
-            let controller = CreateInitialWalletViewController(keystore: keystore)
+//            let layout = UICollectionViewFlowLayout()
+//            layout.scrollDirection = .horizontal
+//            let controller = SwipeVC(collectionViewLayout: layout)
+            
+            let controller = UIStoryboard(name: "Splash", bundle: nil).instantiateInitialViewController() as! OnboardingVC
             controller.delegate = self
-            controller.configure()
+            
+//            let controller = WelcomeViewController()
+
+//            let controller = CreateInitialWalletViewController(keystore: keystore)
+//            controller.delegate = self
+//            controller.configure()
             navigationController.viewControllers = [controller]
         }
         return true
@@ -209,6 +236,24 @@ extension WalletCoordinator: CreateInitialWalletViewControllerDelegate {
     }
 
     func didTapImportWallet(inViewController viewController: CreateInitialWalletViewController) {
+        logInitialAction(.import)
+        addWalletWith(entryPoint: .importWallet)
+    }
+}
+
+extension WalletCoordinator: OnboardingVCDelegate {
+
+    func didTapCreateWallet() {
+        logInitialAction(.create)
+        createInstantWallet()
+    }
+
+    func didTapWatchWallet() {
+        logInitialAction(.watch)
+        addWalletWith(entryPoint: .watchWallet(address: nil))
+    }
+
+    func didTapImportWallet() {
         logInitialAction(.import)
         addWalletWith(entryPoint: .importWallet)
     }

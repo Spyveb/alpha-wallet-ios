@@ -54,7 +54,8 @@ class ScrollableSegmentedControlCell: UIView {
         }
     }
     var intrinsicWidth: CGFloat {
-        return label.intrinsicContentSize.width + (2 * cellPadding)
+        let width = label.intrinsicContentSize.width + (2 * cellPadding)
+        return width > 100 ? width : 100
     }
     var textColor: UIColor {
         get {
@@ -75,6 +76,11 @@ class ScrollableSegmentedControlCell: UIView {
         label.textColor = .white
         return label
     }()
+    
+    private lazy var backView: UIView = {
+        let view = UIView()
+        return view
+    }()
 
     // MARK: - Delegates
 
@@ -91,6 +97,18 @@ class ScrollableSegmentedControlCell: UIView {
         self.configuration = configuration
         super.init(frame: frame)
         configureView(configuration: configuration)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        backView.layer.cornerRadius = 5
+        backView.layer.masksToBounds = false
+        backView.layer.shadowColor = UIColor.gray.cgColor
+        backView.layer.shadowPath = UIBezierPath(roundedRect: backView.bounds, cornerRadius: backView.layer.cornerRadius).cgPath
+        backView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        backView.layer.shadowOpacity = 0.3
+        backView.layer.shadowRadius = 2.0
     }
 
     required init?(coder: NSCoder) {
@@ -117,20 +135,30 @@ class ScrollableSegmentedControlCell: UIView {
         cellWidthConstraint = widthConstraint
         translatesAutoresizingMaskIntoConstraints = false
         isUserInteractionEnabled = true
-        backgroundColor = configuration.backgroundColor
+        //backgroundColor = configuration.backgroundColor
+        backgroundColor = .clear
     }
 
     private func configureLabel(configuration: ScrollableSegmentedControlCellConfiguration) {
         label.text = title
         label.font = configuration.nonHighlightedFont
         label.textColor = configuration.highlightedTextColor
+        addSubview(backView)
         addSubview(label)
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -configuration.textBottomPadding)
         ])
         width = label.intrinsicContentSize.width + (2 * cellPadding)
+        width = width > 100 ? width : 100
         height = label.intrinsicContentSize.height + (2 * cellPadding)
+        
+        var frame = backView.frame
+        frame.size.width = width - 6
+        frame.size.height = 44
+        frame.origin.x = 3
+        frame.origin.y = 3
+        backView.frame = frame
     }
 
     // MARK: - Highlighted
@@ -138,6 +166,7 @@ class ScrollableSegmentedControlCell: UIView {
     private func setHighlighted(_ state: Bool) {
         label.textColor = state ? configuration.highlightedTextColor : configuration.nonHighlightedTextColor
         label.font = state ? configuration.highlightedFont : configuration.nonHighlightedFont
+        backView.backgroundColor = state ? configuration.backgroundColor : .white
     }
 
 }

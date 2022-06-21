@@ -154,7 +154,7 @@ class TokensViewModel {
     func heightForHeaderInSection(for section: Int) -> CGFloat {
         switch sections[section] {
         case .walletSummary:
-            return 80
+            return 150
         case .filters:
             return DataEntry.Metric.Tokens.Filter.height
         case .activeWalletSession:

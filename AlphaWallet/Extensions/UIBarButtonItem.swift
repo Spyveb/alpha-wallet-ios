@@ -79,7 +79,8 @@ extension UIBarButtonItem {
     }
 
     static func addButton(_ target: AnyObject, selector: Selector) -> UIBarButtonItem {
-        return .init(image: R.image.iconsSystemPlus(), style: .plain, target: target, action: selector)
+        //return .init(image: R.image.iconsSystemPlus(), style: .plain, target: target, action: selector)
+        return .init(image: UIImage.init(systemName: "plus.circle.fill"), style: .plain, target: target, action: selector)
     }
 
     static func qrCodeBarButton(_ target: AnyObject, selector: Selector) -> UIBarButtonItem {
@@ -87,7 +88,11 @@ extension UIBarButtonItem {
     }
 
     static func myqrCodeBarButton(_ target: AnyObject, selector: Selector) -> UIBarButtonItem {
-        return .init(image: R.image.qrRounded(), style: .plain, target: target, action: selector)
+        return .init(image: R.image.qrRoundedWhite()?.withRenderingMode(.alwaysOriginal), style: .plain, target: target, action: selector)
+    }
+    
+    static func myActivityBarButton(_ target: AnyObject, selector: Selector) -> UIBarButtonItem {
+        return .init(image: R.image.myActivity()?.withRenderingMode(.alwaysOriginal), style: .plain, target: target, action: selector)
     }
 
     static func moreBarButton(_ target: AnyObject, selector: Selector) -> UIBarButtonItem {

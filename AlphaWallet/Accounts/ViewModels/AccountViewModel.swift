@@ -110,8 +110,8 @@ class AccountViewModel {
 
     private func addressAttributedString(ensName: String?) -> NSAttributedString {
         return .init(string: formattedAddressName(ensName: ensName), attributes: [
-            .font: Fonts.regular(size: 12),
-            .foregroundColor: R.color.dove()!
+            .font: Fonts.semibold(size: 15),
+            .foregroundColor: R.color.azure()!
         ])
     }
 

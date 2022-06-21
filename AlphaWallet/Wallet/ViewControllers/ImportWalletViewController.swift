@@ -237,7 +237,7 @@ class ImportWalletViewController: UIViewController {
 
             tabBar.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             tabBar.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            tabBar.heightAnchor.constraint(equalToConstant: ScreenChecker().isNarrowScreen ? 38 : 44),
+            tabBar.heightAnchor.constraint(equalToConstant: ScreenChecker().isNarrowScreen ? 50 : 50),
 
             mnemonicControlsStackView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: xMargin),
             mnemonicControlsStackView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -xMargin),
@@ -442,7 +442,10 @@ class ImportWalletViewController: UIViewController {
         let password = passwordTextField.value.trimmed
         let watchInput = watchAddressTextField.value.trimmed
 
-        displayLoading(text: R.string.localizable.importWalletImportingIndicatorLabelTitle(), animated: false)
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let window = appdelegate.window
+        //window?.rootViewController?.displayLoading(text: R.string.localizable.importWalletImportingIndicatorLabelTitle(), animated: false)
+        //displayLoading(text: R.string.localizable.importWalletImportingIndicatorLabelTitle(), animated: false)
 
         let importTypeOptional: ImportType? = {
             guard let tab = viewModel.convertSegmentedControlSelectionToFilter(tabBar.selectedSegment) else { return nil }
@@ -453,7 +456,7 @@ class ImportWalletViewController: UIViewController {
                 return .keystore(string: keystoreInput, password: password)
             case .privateKey:
                 guard let data = Data(hexString: privateKeyInput) else {
-                    hideLoading(animated: false)
+                    window?.rootViewController?.hideLoading(animated: false)
                     privateKeyTextView.errorState = .error(R.string.localizable.importWalletImportInvalidPrivateKey())
                     return nil
                 }
@@ -461,7 +464,7 @@ class ImportWalletViewController: UIViewController {
                 return .privateKey(privateKey: data)
             case .watch:
                 guard let address = AlphaWallet.Address(string: watchInput) else {
-                    hideLoading(animated: false)
+                    window?.rootViewController?.hideLoading(animated: false)
                     watchAddressTextField.errorState = .error(R.string.localizable.importWalletImportInvalidAddress())
                     return nil
                 }
@@ -473,12 +476,13 @@ class ImportWalletViewController: UIViewController {
 
         keystore.importWallet(type: importType) { [weak self] result in
             guard let strongSelf = self else { return }
-            strongSelf.hideLoading(animated: false)
+            //strongSelf.hideLoading(animated: false)
+            window?.rootViewController?.hideLoading(animated: false)
             switch result {
             case .success(let account):
                 strongSelf.didImport(account: account)
             case .failure(let error):
-                strongSelf.displayError(error: error)
+                window?.rootViewController?.displayError(error: error)
             }
         }
     }

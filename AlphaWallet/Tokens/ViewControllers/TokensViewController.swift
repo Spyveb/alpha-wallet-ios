@@ -12,6 +12,7 @@ protocol TokensViewControllerDelegate: AnyObject {
     func didTapOpenConsole(in viewController: UIViewController)
     func walletConnectSelected(in viewController: UIViewController)
     func whereAreMyTokensSelected(in viewController: UIViewController)
+    func launchUniversalScanner(fromSource source: Analytics.ScanQRCodeSource)
 }
 
 class TokensViewController: UIViewController {
@@ -35,6 +36,7 @@ class TokensViewController: UIViewController {
         let control = ScrollableSegmentedControl(cells: cells, configuration: controlConfiguration)
         control.setSelection(cellIndex: 0, animated: false)
         control.translatesAutoresizingMaskIntoConstraints = false
+        control.backgroundColor = .clear
         return control
     }()
     private let emptyTableView: EmptyTableView = {
@@ -59,10 +61,20 @@ class TokensViewController: UIViewController {
         tableView.estimatedRowHeight = DataEntry.Metric.TableView.estimatedRowHeight
         tableView.tableFooterView = UIView.tableFooterToRemoveEmptyCellSeparators()
         tableView.separatorInset = .zero
+        tableView.clipsToBounds = false
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         return tableView
+    }()
+    private let imgView: UIImageView = {
+        let imgView = UIImageView(frame: .zero)
+        imgView.image = UIImage(named: "bg_header")
+        imgView.contentMode = .scaleAspectFill
+        imgView.clipsToBounds = true
+        return imgView
     }()
     private lazy var tableViewRefreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
@@ -89,8 +101,8 @@ class TokensViewController: UIViewController {
     private var isSearchBarConfigured = false
     private var bottomConstraint: NSLayoutConstraint!
     private lazy var keyboardChecker = KeyboardChecker(self, resetHeightDefaultValue: 0, ignoreBottomSafeArea: true)
-    private let config: Config
-    private let walletConnectCoordinator: WalletConnectCoordinator
+    let config: Config
+    let walletConnectCoordinator: WalletConnectCoordinator
     private lazy var whereAreMyTokensView: AddHideTokensView = {
         let view = AddHideTokensView()
         view.delegate = self
@@ -151,7 +163,7 @@ class TokensViewController: UIViewController {
             }
         }
     }
-    private var walletSummaryView = WalletSummaryView(edgeInsets: .init(top: 10, left: 0, bottom: 0, right: 0), spacing: 0)
+    private var walletSummaryView = WalletSummaryView(edgeInsets: .init(top: 20, left: 20, bottom: 0, right: 0), spacing: 0)
     private lazy var searchBarHeader: TokensViewController.ContainerView<DummySearchView> = {
         let header: TokensViewController.ContainerView<DummySearchView> = .init(subview: searchBar)
         header.useSeparatorLine = false
@@ -186,11 +198,18 @@ class TokensViewController: UIViewController {
         searchController.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
 
+        view.addSubview(imgView)
         view.addSubview(tableView)
 
         bottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         keyboardChecker.constraints = [bottomConstraint]
 
+        let window = UIApplication.shared.windows.first
+        let topPadding = window?.safeAreaInsets.top ?? 0
+        
+        let frame = CGRect(x: 0, y: topPadding, width: view.frame.width, height: 150 + 44 + DataEntry.Metric.Tokens.Filter.height)
+        imgView.frame = frame
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -246,6 +265,8 @@ class TokensViewController: UIViewController {
         tableViewFilterView.addTarget(self, action: #selector(didTapSegment), for: .touchUpInside)
         consoleButton.addTarget(self, action: #selector(openConsole), for: .touchUpInside)
         tableViewRefreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        
+        tableViewFilterView.clipsToBounds = false
 
         handleTokenCollectionUpdates()
     }
@@ -255,12 +276,31 @@ class TokensViewController: UIViewController {
 
         navigationController?.applyTintAdjustment()
         hidesBottomBarWhenPushed = false
+        
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.barTintColor = .clear
 
         tokenCollection.fetch()
         fixNavigationBarAndStatusBarBackgroundColorForiOS13Dot1()
         keyboardChecker.viewWillAppear()
         delegate?.viewWillAppear(in: self)
         hideNavigationBarTopSeparatorLine()
+        
+//        let appearance = UINavigationBarAppearance()
+//        appearance.backgroundColor = .clear
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .clear //R.color.white()!
+        appearance.shadowColor = Style.NavigationBar.Separator.color
+        appearance.shadowImage = nil
+        
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.standardAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -294,7 +334,8 @@ class TokensViewController: UIViewController {
 
     private func refreshView(viewModel: TokensViewModel) {
         view.backgroundColor = viewModel.backgroundColor
-        tableView.backgroundColor = viewModel.backgroundColor
+        //tableView.backgroundColor = viewModel.backgroundColor
+        tableView.backgroundColor = .clear
     }
 
     private func handleTokenCollectionUpdates() {
@@ -358,13 +399,18 @@ extension TokensViewController: UITableViewDelegate {
         switch viewModel.sections[section] {
         case .walletSummary:
             let header: TokensViewController.GeneralTableViewSectionHeader<WalletSummaryView> = tableView.dequeueReusableHeaderFooterView()
+            //header.clipsToBounds = false
             header.subview = walletSummaryView
+            header.contentView.backgroundColor = .clear
+            walletSummaryView.backgroundColor = .clear
 
             return header
         case .filters:
             let header: TokensViewController.GeneralTableViewSectionHeader<ScrollableSegmentedControl> = tableView.dequeueReusableHeaderFooterView()
             header.subview = tableViewFilterView
             header.useSeparatorLine = false
+            header.contentView.backgroundColor = .clear
+            tableViewFilterView.backgroundColor = .clear
 
             return header
         case .activeWalletSession(let count):
@@ -394,7 +440,29 @@ extension TokensViewController: UITableViewDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.contentOffset.y == 0 ? hideNavigationBarTopSeparatorLineInScrollEdgeAppearance() : showNavigationBarTopSeparatorLineInScrollEdgeAppearance()
+        if scrollView.contentOffset.y <= 0 {
+            hideNavigationBarTopSeparatorLineInScrollEdgeAppearance()
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .clear //R.color.white()!
+            navigationItem.scrollEdgeAppearance = appearance
+            navigationItem.standardAppearance = appearance
+            navigationItem.compactAppearance = appearance
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.compactAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        } else {
+            showNavigationBarTopSeparatorLineInScrollEdgeAppearance()
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = R.color.white()!
+            navigationItem.scrollEdgeAppearance = appearance
+            navigationItem.standardAppearance = appearance
+            navigationItem.compactAppearance = appearance
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.compactAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
     }
 
 }
@@ -672,7 +740,7 @@ extension TokensViewController: UISearchResultsUpdating {
 fileprivate class DummySearchView: UIView {
 
     private let searchBar: UISearchBar = {
-        let searchBar: UISearchBar = UISearchBar(frame: .init(x: 0, y: 0, width: 100, height: 50))
+        let searchBar: UISearchBar = UISearchBar(frame: .init(x: 0, y: 10, width: 100, height: 50))
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.isUserInteractionEnabled = false
         UISearchBar.configure(searchBar: searchBar)
@@ -742,13 +810,13 @@ extension TokensViewController {
     }
 
     private func fixNavigationBarAndStatusBarBackgroundColorForiOS13Dot1() {
-        view.superview?.backgroundColor = viewModel.backgroundColor
+        view.superview?.backgroundColor = .clear //viewModel.backgroundColor
     }
 
     private func setupFilteringWithKeyword() {
         navigationItem.hidesSearchBarWhenScrolling = false
         wireUpSearchController()
-        TokensViewController.functional.fixTableViewBackgroundColor(tableView: tableView, backgroundColor: viewModel.backgroundColor)
+        TokensViewController.functional.fixTableViewBackgroundColor(tableView: tableView, backgroundColor: .clear)//viewModel.backgroundColor)
         doNotDimTableViewToReuseTableForFilteringResult()
         makeSwitchToAnotherTabWorkWhileFiltering()
     }

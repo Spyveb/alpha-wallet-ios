@@ -27,7 +27,7 @@ class TokensCoordinator: Coordinator {
     private let sessions: ServerDictionary<WalletSession>
     private let keystore: Keystore
     private let config: Config
-
+    
     private lazy var tokenCollection: TokenCollection = {
         return MultipleChainsTokenCollection(tokensFilter: tokensFilter, tokensDataStore: tokensDataStore, config: config)
     }()
@@ -128,13 +128,16 @@ class TokensCoordinator: Coordinator {
         setupSingleChainTokenCoordinators()
 
         let moreBarButton = UIBarButtonItem.moreBarButton(self, selector: #selector(moreButtonSelected))
-        let qrCodeBarButton = UIBarButtonItem.qrCodeBarButton(self, selector: #selector(scanQRCodeButtonSelected))
+        let qrCodeBarButton = UIBarButtonItem.myqrCodeBarButton(self, selector: #selector(showMyQRCodeButtonSelected))
+        let myActivityBarButton = UIBarButtonItem.myActivityBarButton(self, selector: #selector(myActivityButtonSelected))
         moreBarButton.imageInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
-        qrCodeBarButton.imageInsets = .init(top: 0, left: 15, bottom: 0, right: -15)
+        qrCodeBarButton.imageInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+        myActivityBarButton.imageInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
 
         tokensViewController.navigationItem.rightBarButtonItems = [
             moreBarButton,
-            qrCodeBarButton
+            qrCodeBarButton,
+            myActivityBarButton
         ]
         tokensViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: tokensViewController.blockieImageView)
         tokensViewController.blockieImageView.addTarget(self, action: #selector(blockieButtonSelected), for: .touchUpInside)
@@ -144,6 +147,14 @@ class TokensCoordinator: Coordinator {
         delegate?.blockieSelected(in: self)
     }
 
+    @objc private func showMyQRCodeButtonSelected(_ sender: UIBarButtonItem) {
+        delegate?.didPress(for: .request, server: config.anyEnabledServer(), viewController: .none, in: self)
+    }
+    
+    @objc private func myActivityButtonSelected(_ sender: UIBarButtonItem) {
+        delegate?.didTap(activity: Activity(), viewController: self.tokensViewController, in: self)
+    }
+    
     @objc private func scanQRCodeButtonSelected(_ sender: UIBarButtonItem) {
         if config.development.shouldReadClipboardForWalletConnectUrl {
             if let s = UIPasteboard.general.string ?? UIPasteboard.general.url?.absoluteString, let url = AlphaWallet.WalletConnect.ConnectionUrl(s) {
@@ -215,6 +226,11 @@ class TokensCoordinator: Coordinator {
         tokensViewController.listOfBadTokenScriptFiles = fileNames
     }
 
+
+}
+
+extension TokensCoordinator: TokensViewControllerDelegate {
+    
     func launchUniversalScanner(fromSource source: Analytics.ScanQRCodeSource) {
         let account = sessions.anyValue.account
         let scanQRCodeCoordinator = ScanQRCodeCoordinator(analyticsCoordinator: analyticsCoordinator, navigationController: navigationController, account: account)
@@ -225,9 +241,6 @@ class TokensCoordinator: Coordinator {
         addCoordinator(coordinator)
         coordinator.start(fromSource: source)
     }
-}
-
-extension TokensCoordinator: TokensViewControllerDelegate {
 
     func whereAreMyTokensSelected(in viewController: UIViewController) {
         delegate?.whereAreMyTokensSelected(in: self)
@@ -417,6 +430,8 @@ extension TokensCoordinator: QRCodeResolutionCoordinatorDelegate {
 
     func coordinator(_ coordinator: QRCodeResolutionCoordinator, didResolvePrivateKey privateKey: String) {
         removeCoordinator(coordinator)
+        
+        handlePrivateKeyWallet(privateKey)
     }
 
     func didCancel(in coordinator: QRCodeResolutionCoordinator) {
@@ -479,15 +494,37 @@ extension TokensCoordinator: QRCodeResolutionCoordinatorDelegate {
     }
 
     private func handleWatchWallet(_ address: AlphaWallet.Address) {
+        
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let window = appdelegate.window
+        window?.rootViewController?.displayLoading(text: R.string.localizable.importWalletImportingIndicatorLabelTitle(), animated: false)
+        
         let walletCoordinator = WalletCoordinator(config: config, keystore: keystore, analyticsCoordinator: analyticsCoordinator)
         walletCoordinator.delegate = self
 
         addCoordinator(walletCoordinator)
 
         walletCoordinator.start(.watchWallet(address: address))
-        walletCoordinator.navigationController.makePresentationFullScreenForiOS13Migration()
+        //walletCoordinator.navigationController.makePresentationFullScreenForiOS13Migration()
 
-        navigationController.present(walletCoordinator.navigationController, animated: true)
+        //navigationController.present(walletCoordinator.navigationController, animated: true)
+    }
+    
+    private func handlePrivateKeyWallet(_ privateKey: String) {
+        
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let window = appdelegate.window
+        window?.rootViewController?.displayLoading(text: R.string.localizable.importWalletImportingIndicatorLabelTitle(), animated: false)
+        
+        let walletCoordinator = WalletCoordinator(config: config, keystore: keystore, analyticsCoordinator: analyticsCoordinator)
+        walletCoordinator.delegate = self
+
+        addCoordinator(walletCoordinator)
+
+        walletCoordinator.start(.privateKey(address: privateKey))
+        //walletCoordinator.navigationController.makePresentationFullScreenForiOS13Migration()
+
+        //navigationController.present(walletCoordinator.navigationController, animated: true)
     }
 
     func coordinator(_ coordinator: QRCodeResolutionCoordinator, didResolveURL url: URL) {

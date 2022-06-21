@@ -169,7 +169,7 @@
 "transactions.received.ether" = "You have received %@ %@";
 "transactions.received.ether.notification.prompt" = "Allow Notifications When You Receive %@?";
 "transaction.navigation.title" = "Transaction";
-"activity.tabbar.item.title" = "Activity";
+"activity.tabbar.item.title" = "Wallet";
 "import.navigation.title" = "Import Wallet";
 "configureTransaction.data.label.title" = "Transaction Data (Optional)";
 "configureTransaction.nonce.label.title" = "Nonce (Optional)";
@@ -268,7 +268,7 @@
 "transaction.cell.failed.title" = "Failed";
 "transaction.cell.pending.title" = "Pending";
 "transaction.cell.availableButDataUnavailable.title" = "Incomplete Data";
-"walletTokens.tabbar.item.title" = "Wallet";
+"walletTokens.tabbar.item.title" = "Home";
 "a.wallet.import.wallet.title" = "Import";
 "a.wallet.import.wallet.bubble.title" = "Have a ticket to import?";
 "a.wallet.import.wallet.bubble.description" = "Check your Email/SMS for the import link. Tap it and it will automatically import to the app!";

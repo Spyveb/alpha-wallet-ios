@@ -10,6 +10,12 @@ func SplashViewController() -> UIViewController {
         return value
     } else {
         splashViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
+
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .horizontal
+//        splashViewController = SwipeVC(collectionViewLayout: layout)
+        
+        //splashViewController = WelcomeViewController()
     }
     return splashViewController!
 }

@@ -2,22 +2,21 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "onboarding_3.jpg",
       "scale" : "1x"
     },
     {
+      "filename" : "onboarding_3@2x.png",
       "idiom" : "universal",
-      "filename" : "onboarding_3@2x.jpg",
       "scale" : "2x"
     },
     {
+      "filename" : "onboarding_3@3x.png",
       "idiom" : "universal",
-      "filename" : "onboarding_3@3x.jpg",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

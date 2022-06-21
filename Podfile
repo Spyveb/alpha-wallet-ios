@@ -44,7 +44,7 @@ target 'AlphaWallet' do
   pod 'xcbeautify'
   pod 'FloatingPanel'
 
-  target 'AlphaWalletTests' do
+  target 'Alpha WalletTests' do
       inherit! :search_paths
       # Pods for testing
       pod 'iOSSnapshotTestCase', '6.2.0'

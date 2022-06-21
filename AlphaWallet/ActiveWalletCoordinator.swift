@@ -93,8 +93,8 @@ class ActiveWalletCoordinator: NSObject, Coordinator, DappRequestHandlerDelegate
         return PromptBackupCoordinator(keystore: keystore, wallet: wallet, config: config, analyticsCoordinator: analyticsCoordinator)
     }()
 
-    lazy var tabBarController: UITabBarController = {
-        let tabBarController: UITabBarController = .withOverridenBarAppearence()
+    lazy var tabBarController: CustomTabViewController = {
+        let tabBarController: CustomTabViewController = .withOverridenBarAppearence()
         tabBarController.delegate = self
 
         return tabBarController
@@ -328,6 +328,17 @@ class ActiveWalletCoordinator: NSObject, Coordinator, DappRequestHandlerDelegate
         addCoordinator(coordinator)
         return coordinator
     }
+    
+    private func createAccountsCoordinator() -> AccountsCoordinator {
+        let coordinator = accountsCoordinator// AccountsCoordinator(config: config, navigationController: navigationController, keystore: keystore, analyticsCoordinator: analyticsCoordinator, viewModel: AccountsCoordinatorViewModel(configuration: <#AccountsCoordinatorViewModel.Configuration#>), walletBalanceService: walletBalanceService)
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        coordinator.delegate = appdelegate.appCoordinator
+        coordinator.start()
+        coordinator.accountsViewController.tabBarItem = UITabBarController.Tabs.activities.tabBarItem
+        coordinator.navigationController.configureForLargeTitles()
+        addCoordinator(coordinator)
+        return coordinator
+    }
 
     private func createBrowserCoordinator(sessions: ServerDictionary<WalletSession>, browserOnly: Bool, analyticsCoordinator: AnalyticsCoordinator) -> DappBrowserCoordinator {
         let coordinator = DappBrowserCoordinator(sessions: sessions, keystore: keystore, config: config, sharedRealm: Realm.shared(), browserOnly: browserOnly, restartQueue: restartQueue, analyticsCoordinator: analyticsCoordinator)
@@ -369,12 +380,30 @@ class ActiveWalletCoordinator: NSObject, Coordinator, DappRequestHandlerDelegate
         let transactionCoordinator = createTransactionCoordinator(transactionDataStore: transactionDataStore)
 
         if Features.default.isAvailable(.isActivityEnabled) {
-            let activityCoordinator = createActivityCoordinator(activitiesService: activitiesService)
-            viewControllers.append(activityCoordinator.navigationController)
+            //let activityCoordinator = accountsCoordinator
+            //let activityCoordinator = createAccountsCoordinator()
+            //let activityCoordinator = createActivityCoordinator(activitiesService: activitiesService)
+            //viewControllers.append(activityCoordinator.navigationController)
+            
+            let vc = AccountsViewController(viewModel: accountsCoordinator.accountsViewController.viewModel)
+            vc.delegate = accountsCoordinator
+            vc.tabBarItem = UITabBarController.Tabs.activities.tabBarItem
+//            coordinator.delegate = appdelegate.appCoordinator
+//            coordinator.start()
+//            coordinator.accountsViewController.tabBarItem = UITabBarController.Tabs.activities.tabBarItem
+//            coordinator.navigationController.configureForLargeTitles()
+//            addCoordinator(coordinator)
+            let nav = UINavigationController(rootViewController: vc)
+            viewControllers.append(nav)
         } else {
             viewControllers.append(transactionCoordinator.navigationController)
         }
 
+        let vc = UIViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        
+        viewControllers.append(nav)
+        
         let browserCoordinator = createBrowserCoordinator(sessions: sessionsSubject.value, browserOnly: false, analyticsCoordinator: analyticsCoordinator)
         viewControllers.append(browserCoordinator.navigationController)
 
@@ -767,8 +796,10 @@ extension ActiveWalletCoordinator: TokensCoordinatorDelegate {
     }
 
     private func showActivity(_ activity: Activity, navigationController: UINavigationController) {
-        let controller = ActivityViewController(analyticsCoordinator: analyticsCoordinator, wallet: wallet, assetDefinitionStore: assetDefinitionStore, viewModel: .init(activity: activity), service: activitiesService, keystore: keystore)
-        controller.delegate = self
+        //let controller = ActivityViewController(analyticsCoordinator: analyticsCoordinator, wallet: wallet, assetDefinitionStore: assetDefinitionStore, viewModel: .init(activity: activity), service: activitiesService, keystore: keystore)
+        _ = createActivityCoordinator(activitiesService: activitiesService)
+        let controller = activityCoordinator!.rootViewController
+        //controller.delegate = self
 
         controller.hidesBottomBarWhenPushed = true
         controller.navigationItem.largeTitleDisplayMode = .never

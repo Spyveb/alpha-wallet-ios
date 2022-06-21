@@ -92,7 +92,11 @@ class AccountsCoordinator: Coordinator {
 
     func start() {
         accountsViewController.navigationItem.largeTitleDisplayMode = .never
-        navigationController.pushViewController(accountsViewController, animated: viewModel.animatedPresentation)
+        if navigationController.viewControllers.isEmpty {
+            navigationController.pushViewController(accountsViewController, animated: viewModel.animatedPresentation)
+        } else {
+            navigationController.viewControllers = [accountsViewController]
+        }
     }
 
     @objc private func dismiss() {

@@ -19,13 +19,15 @@ class WalletSummaryView: UIView, ReusableTableHeaderViewType {
         translatesAutoresizingMaskIntoConstraints = false
         isUserInteractionEnabled = true
         apprecation24HoursLabel.lineBreakMode = .byTruncatingMiddle
+        balanceLabel.textAlignment = .left
+        apprecation24HoursLabel.textAlignment = .left
 
         let leftStackView = [
             balanceLabel,
             apprecation24HoursLabel,
-        ].asStackView(axis: .vertical, spacing: spacing)
+        ].asStackView(axis: .vertical, spacing: spacing, alignment: .leading)
 
-        let stackView = [leftStackView].asStackView(spacing: 0, alignment: .fill)
+        let stackView = [[UILabel()].asStackView(), leftStackView, [UILabel()].asStackView()].asStackView(axis: .vertical, spacing: 20, alignment: .fill)
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         apprecation24HoursLabel.setContentHuggingPriority(.required, for: .horizontal)
@@ -36,12 +38,22 @@ class WalletSummaryView: UIView, ReusableTableHeaderViewType {
         addSubview(stackView)
 
         NSLayoutConstraint.activate([
-            balanceLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
-            apprecation24HoursLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
+            balanceLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 30),
+            apprecation24HoursLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 30),
             stackView.anchorsConstraintLessThanOrEqualTo(to: self, edgeInsets: edgeInsets),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
         ])
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+//
+//            let window = UIApplication.shared.windows.first
+//            let topPadding = window?.safeAreaInsets.top ?? 0
+//
+//            var frame = stackView.frame
+//            frame.origin.y = -44 - topPadding
+//            frame.size.height = frame.height + 44 + topPadding
+//            self?.imgView.frame = frame
+//        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +61,7 @@ class WalletSummaryView: UIView, ReusableTableHeaderViewType {
     }
 
     func configure(viewModel: WalletSummaryViewModel) {
-        backgroundColor = viewModel.backgroundColor
+        backgroundColor = .clear// viewModel.backgroundColor
         cancelable.cancellAll()
 
         viewModel.balanceAttributedString

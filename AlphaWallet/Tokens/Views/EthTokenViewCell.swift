@@ -118,8 +118,20 @@ class EthTokenViewCell: UITableViewCell {
             tokenImageView.widthAnchor.constraint(equalToConstant: 40),
             row1.heightAnchor.constraint(greaterThanOrEqualToConstant: 20),
             stackView.anchorsConstraint(to: background, edgeInsets: .init(top: 12, left: 16, bottom: 15, right: 16)),
-            background.anchorsConstraint(to: contentView)
+            background.anchorsConstraint(to: contentView, edgeInsets: .init(top: 5, left: 15, bottom: 5, right: 15))
         ])
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        background.layer.cornerRadius = 8
+        background.layer.masksToBounds = false
+        background.layer.shadowColor = UIColor.gray.cgColor
+        background.layer.shadowPath = UIBezierPath(roundedRect: background.bounds, cornerRadius: background.layer.cornerRadius).cgPath
+        background.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        background.layer.shadowOpacity = 0.4
+        background.layer.shadowRadius = 3.0
     }
 
     required init?(coder aDecoder: NSCoder) {

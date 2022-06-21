@@ -50,10 +50,10 @@ class FungibleTokenViewCell: UITableViewCell {
             tokenImageView.widthAnchor.constraint(equalToConstant: 40),
             row1.heightAnchor.constraint(greaterThanOrEqualToConstant: 20),
             stackView.anchorsConstraint(to: background, edgeInsets: .init(top: 12, left: 20, bottom: 16, right: 12)),
-            background.anchorsConstraint(to: contentView)
+            background.anchorsConstraint(to: contentView, edgeInsets: .init(top: 5, left: 15, bottom: 5, right: 15))
         ])
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         return nil
     }
@@ -88,6 +88,14 @@ class FungibleTokenViewCell: UITableViewCell {
         super.layoutSubviews()
 
         priceChangeLabel.layer.cornerRadius = 2.0
+        
+        background.layer.cornerRadius = 8
+        background.layer.masksToBounds = false
+        background.layer.shadowColor = UIColor.gray.cgColor
+        background.layer.shadowPath = UIBezierPath(roundedRect: background.bounds, cornerRadius: background.layer.cornerRadius).cgPath
+        background.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        background.layer.shadowOpacity = 0.4
+        background.layer.shadowRadius = 3.0
     }
 
     override func prepareForReuse() {

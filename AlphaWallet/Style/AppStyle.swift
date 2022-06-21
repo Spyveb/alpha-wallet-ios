@@ -78,12 +78,13 @@ extension UITabBarAppearance {
     }
 }
 
-extension UITabBarController {
-    static func withOverridenBarAppearence(appearence tabBarAppearance: UITabBarAppearance = .defaultAppearence) -> UITabBarController {
-        let tabBarController = UITabBarController()
-        tabBarController.tabBar.isTranslucent = false
-        tabBarController.tabBar.tintColor = Colors.appTint
-        tabBarController.tabBar.standardAppearance = tabBarAppearance
+extension CustomTabViewController {
+    static func withOverridenBarAppearence(appearence tabBarAppearance: UITabBarAppearance = .defaultAppearence) -> CustomTabViewController {
+        let sb = UIStoryboard.init(name: "TabBar", bundle: Bundle.main)
+        let tabBarController = sb.instantiateViewController(withIdentifier: "CustomTabViewController") as! CustomTabViewController
+//        tabBarController.tabBar.isTranslucent = false
+//        tabBarController.tabBar.tintColor = Colors.appTint
+//        tabBarController.tabBar.standardAppearance = tabBarAppearance
 
         if #available(iOS 15.0, *) {
             tabBarController.tabBar.scrollEdgeAppearance = tabBarAppearance
@@ -373,7 +374,7 @@ enum Style {
     }
     enum Wallet {
         enum Header {
-            static let height = 60.0
+            static let height = 45.0
             static let backgroundColor = R.color.alabaster()
             static let textColor = R.color.dove()
             static let font = R.font.sourceSansProSemibold(size: 15.0)
@@ -460,10 +461,12 @@ enum Style {
         }
     }
     enum ScrollableSegmentedControl {
-        static let configuration = ScrollableSegmentedControlConfiguration(lineConfiguration: ScrollableSegmentedControlHighlightableLineViewConfiguration(lineHeight: 1.0, highlightHeight: 3.0, lineColor: R.color.mercury()!, highLightColor: R.color.azure()!), isProportionalWidth: true, cellSpacing: 10.0, alignmentWhenNotScrollable: .filled, animationDuration: 0.25, animationCurve: .easeInOut)
+        //static let configuration = ScrollableSegmentedControlConfiguration(lineConfiguration: ScrollableSegmentedControlHighlightableLineViewConfiguration(lineHeight: 1.0, highlightHeight: 3.0, lineColor: R.color.mercury()!, highLightColor: R.color.azure()!), isProportionalWidth: true, cellSpacing: 10.0, alignmentWhenNotScrollable: .filled, animationDuration: 0.25, animationCurve: .easeInOut)
+        static let configuration = ScrollableSegmentedControlConfiguration(lineConfiguration: ScrollableSegmentedControlHighlightableLineViewConfiguration(lineHeight: 1.0, highlightHeight: 3.0, lineColor: .clear, highLightColor: .clear), isProportionalWidth: true, cellSpacing: 20.0, alignmentWhenNotScrollable: .filled, animationDuration: 0.25, animationCurve: .easeInOut)
     }
     enum ScrollableSegmentedControlCell {
-        static let configuration = ScrollableSegmentedControlCellConfiguration(backgroundColor: .white, highlightedTextColor: R.color.azure()!, nonHighlightedTextColor: R.color.dove()!, highlightedFont: R.font.sourceSansProSemibold(size: 15.0)!, nonHighlightedFont: R.font.sourceSansProRegular(size: 15.0)!, cellPadding: 8.0, textBottomPadding: 12.0)
+        //static let configuration = ScrollableSegmentedControlCellConfiguration(backgroundColor: .white, highlightedTextColor: R.color.azure()!, nonHighlightedTextColor: R.color.dove()!, highlightedFont: R.font.sourceSansProSemibold(size: 15.0)!, nonHighlightedFont: R.font.sourceSansProRegular(size: 15.0)!, cellPadding: 8.0, textBottomPadding: 12.0)
+        static let configuration = ScrollableSegmentedControlCellConfiguration(backgroundColor: R.color.azure()!, highlightedTextColor: .white, nonHighlightedTextColor: .black, highlightedFont: R.font.sourceSansProSemibold(size: 16.0)!, nonHighlightedFont: R.font.sourceSansProRegular(size: 16.0)!, cellPadding: 8.0, textBottomPadding: 12.0)
     }
     enum value {
         static let appreciated: UIColor = R.color.green()!

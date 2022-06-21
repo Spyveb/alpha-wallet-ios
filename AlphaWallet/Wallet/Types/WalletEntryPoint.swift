@@ -7,4 +7,5 @@ enum WalletEntryPoint {
     case createInstantWallet
     case importWallet
     case watchWallet(address: AlphaWallet.Address?)
+    case privateKey(address: String)
 }
