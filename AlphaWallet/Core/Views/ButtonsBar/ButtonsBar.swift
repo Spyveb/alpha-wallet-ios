@@ -338,7 +338,7 @@ class HorizontalButtonsBar: UIView, ButtonsBarViewType {
 struct ButtonsBarViewModel {
 
     static let primaryButton = ButtonsBarViewModel(
-        buttonBackgroundColor: ButtonsBarStyle.Colors.primaryBackgroundActive,
+        buttonBackgroundColor: ButtonsBarStyle.Colors.primaryHighlightedBackground,
         highlightedButtonBackgroundColor: ButtonsBarStyle.Colors.primaryHighlightedBackground,
         disabledButtonBackgroundColor: ButtonsBarStyle.Colors.primaryBackgroundInactive,
         disabledButtonBorderColor: ButtonsBarStyle.Colors.primaryBorderInactive,
@@ -348,22 +348,22 @@ struct ButtonsBarViewModel {
     )
 
     static let secondaryButton = ButtonsBarViewModel(
-        buttonBackgroundColor: ButtonsBarStyle.Colors.secondaryBackgroundActive,
-        highlightedButtonBackgroundColor: ButtonsBarStyle.Colors.secondaryHighlightedBackground,
-        disabledButtonBackgroundColor: ButtonsBarStyle.Colors.secondaryBackgroundInactive,
-        disabledButtonBorderColor: ButtonsBarStyle.Colors.secondaryBorderInactive,
-        buttonTitleColor: ButtonsBarStyle.Colors.secondaryTextActive,
-        disabledButtonTitleColor: ButtonsBarStyle.Colors.secondaryTextInactive,
-        buttonBorderColor: ButtonsBarStyle.Colors.secondaryBorderActive
+        buttonBackgroundColor: ButtonsBarStyle.Colors.primaryHighlightedBackground,
+        highlightedButtonBackgroundColor: ButtonsBarStyle.Colors.primaryHighlightedBackground,
+        disabledButtonBackgroundColor: ButtonsBarStyle.Colors.primaryBackgroundInactive,
+        disabledButtonBorderColor: ButtonsBarStyle.Colors.primaryBorderInactive,
+        buttonTitleColor: ButtonsBarStyle.Colors.primaryTextActive,
+        disabledButtonTitleColor: ButtonsBarStyle.Colors.primaryTextInactive,
+        buttonBorderColor: ButtonsBarStyle.Colors.primaryBorderActive
     )
 
     static let systemButton = ButtonsBarViewModel(
-        buttonBackgroundColor: Colors.appWhite,
-        highlightedButtonBackgroundColor: Colors.appWhite,
-        disabledButtonBackgroundColor: Colors.appWhite,
-        disabledButtonBorderColor: Colors.appWhite,
-        highlightedButtonTitleColor: R.color.azure()!.withAlphaComponent(0.3),
-        disabledButtonTitleColor: R.color.azure()!.withAlphaComponent(0.3),
+        buttonBackgroundColor: Colors.black,
+        highlightedButtonBackgroundColor: Colors.black,
+        disabledButtonBackgroundColor: Colors.black,
+        disabledButtonBorderColor: Colors.black,
+        highlightedButtonTitleColor: R.color.black()!,
+        disabledButtonTitleColor: R.color.black()!,
         buttonFont: Fonts.regular(size: ScreenChecker().isNarrowScreen ? 16 : 20),
         buttonBorderWidth: 0.0
     )
@@ -380,7 +380,7 @@ struct ButtonsBarViewModel {
     var disabledButtonTitleColor: UIColor = Colors.appWhite
 
     var buttonCornerRadius: CGFloat {
-        return HorizontalButtonsBar.buttonsHeight / 2.0
+        return 8//HorizontalButtonsBar.buttonsHeight / 2.0
     }
 
     var buttonShadowColor: UIColor {

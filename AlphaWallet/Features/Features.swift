@@ -122,7 +122,7 @@ enum FeaturesAvailable: String, CaseIterable, Codable {
         case .isPromptForEmailListSubscriptionEnabled:
             return true
         case .isAlertsEnabled:
-            return false
+            return true
         case .isErc1155Enabled:
             return true
         case .isUsingPrivateNetwork:

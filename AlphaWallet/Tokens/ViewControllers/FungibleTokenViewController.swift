@@ -54,7 +54,8 @@ class FungibleTokenViewController: UIViewController {
         if Features.default.isAvailable(.isAlertsEnabled) && viewModel.hasCoinTicker {
             pages = [pageWithFooter, activitiesPageView, alertsPageView]
         } else {
-            pages = [pageWithFooter, activitiesPageView]
+            //let blank = BlankPageView()
+            pages = [pageWithFooter, activitiesPageView]//, blank]
         }
 
         let containerView = PagesContainerView(pages: pages)
@@ -235,4 +236,10 @@ extension FungibleTokenViewController: ActivitiesPageViewDelegate {
     func didTap(transaction: TransactionInstance, in view: ActivitiesPageView) {
         delegate?.didTap(transaction: transaction, in: self)
     }
+}
+
+class BlankPageView: UIView, PageViewType {
+    var rightBarButtonItem: UIBarButtonItem?
+    
+    var title: String { "" }
 }

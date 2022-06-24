@@ -57,7 +57,7 @@ extension PromptBackupWalletViewModel {
     }
 
     var backupButtonContentEdgeInsets: UIEdgeInsets {
-        return .init(top: 7, left: 21, bottom: 7, right: 21)
+        return .init(top: 7, left: 10, bottom: 7, right: 8)
     }
 
     var moreButtonImage: UIImage {

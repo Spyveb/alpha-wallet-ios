@@ -36,6 +36,11 @@ class OnboardingVC: UIViewController, UIScrollViewDelegate {
 //        }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     @IBAction func pageControlValueChanged(_ sender: Any) {
         //let nextIndexPath = min(pagecontrol.currentPage + 1, pages.count - 1)
         scrollView?.scrollRectToVisible(CGRect(x: CGFloat(pagecontrol.currentPage) * self.view.bounds.width, y: 0, width: scrollView.bounds.width, height: scrollView.bounds.width), animated: true)

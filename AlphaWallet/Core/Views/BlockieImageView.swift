@@ -8,7 +8,7 @@
 import UIKit
 
 class BlockieImageView: UIView {
-    private lazy var imageView: WebImageView = {
+    lazy var imageView: WebImageView = {
         let imageView = WebImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false

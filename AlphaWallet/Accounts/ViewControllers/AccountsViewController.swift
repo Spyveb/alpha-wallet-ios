@@ -17,8 +17,8 @@ class AccountsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .singleLine
-        tableView.backgroundColor = GroupedTable.Color.background
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .white //GroupedTable.Color.background
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(AccountViewCell.self)
@@ -126,9 +126,34 @@ class AccountsViewController: UIViewController {
         }
     }
 
+    // This allows you to initialise your custom UIViewController without a nib or bundle.
+//    convenience init() {
+//        self.init(nibName:nil, bundle:nil)
+//    }
+//
+//    // This extends the superclass.
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+//        //tap = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+//    }
+
+    // This is also necessary when extending the superclass.
     required init?(coder aDecoder: NSCoder) {
-        return nil
+        fatalError("init(coder:) has not been implemented") // or see Roman Sausarnes's answer
     }
+    
+//    convenience init(){
+//        self.init()
+//    }
+//    convenience init() {
+//        self.init(nibName:nil, bundle:nil)
+//    }
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//    required init?(coder aDecoder: NSCoder) {
+//        return nil
+//    }
 }
 
 // MARK: - TableView Data Source
@@ -148,6 +173,9 @@ extension AccountsViewController: UITableViewDataSource {
         case .hdWallet, .keystoreWallet, .watchedWallet:
             guard let viewModel = viewModel.accountViewModel(forIndexPath: indexPath) else { return UITableViewCell() }
 
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "AccountViewCellID", for: indexPath) as! AccountViewCell
+            //let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.accountViewCellID.identifier, for: indexPath) as! AccountViewCell
+//            tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.accountViewCellID.identifier, for: indexPath) as! AccountViewCell
             let cell: AccountViewCell = tableView.dequeueReusableCell(for: indexPath)
             cell.configure(viewModel: viewModel)
 

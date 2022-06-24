@@ -130,6 +130,11 @@ class ScrollableSegmentedControlCell: UIView {
         NSLayoutConstraint.activate([
             heightConstraint,
             widthConstraint,
+            //backView.anchorsConstraint(to: self, edgeInsets: .init(top: 3, left: 3, bottom: 3, right: 3))
+//            backView.topAnchor.constraint(equalTo: topAnchor, constant: 3),
+//            backView.leftAnchor.constraint(equalTo: leftAnchor, constant: 3),
+//            backView.rightAnchor.constraint(equalTo: rightAnchor, constant: 3),
+//            backView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 3),
         ])
         cellHeightConstraint = heightConstraint
         cellWidthConstraint = widthConstraint
@@ -137,6 +142,13 @@ class ScrollableSegmentedControlCell: UIView {
         isUserInteractionEnabled = true
         //backgroundColor = configuration.backgroundColor
         backgroundColor = .clear
+        
+//        var frame = backView.frame
+//        frame.size.width = width - 6
+//        frame.size.height = 44
+//        frame.origin.x = 3
+//        frame.origin.y = 3
+//        backView.frame = frame
     }
 
     private func configureLabel(configuration: ScrollableSegmentedControlCellConfiguration) {
@@ -147,18 +159,23 @@ class ScrollableSegmentedControlCell: UIView {
         addSubview(label)
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -configuration.textBottomPadding)
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -configuration.textBottomPadding),
+            
         ])
         width = label.intrinsicContentSize.width + (2 * cellPadding)
         width = width > 100 ? width : 100
         height = label.intrinsicContentSize.height + (2 * cellPadding)
         
-        var frame = backView.frame
-        frame.size.width = width - 6
-        frame.size.height = 44
-        frame.origin.x = 3
-        frame.origin.y = 3
-        backView.frame = frame
+//        var frame = backView.frame
+//        frame.size.width = width - 6
+//        frame.size.height = 44
+//        frame.origin.x = 3
+//        frame.origin.y = 3
+        backView.frame = CGRect(x: 3, y: 3, width: width - 6, height: 44)
+        
+        backView.translatesAutoresizingMaskIntoConstraints = true
+        backView.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        backView.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
     }
 
     // MARK: - Highlighted

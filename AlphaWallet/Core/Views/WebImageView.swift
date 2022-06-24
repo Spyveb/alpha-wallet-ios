@@ -53,7 +53,7 @@ final class WebImageView: UIView, ContentBackgroundSupportable {
         return imageView
     }()
 
-    private lazy var imageView: FixedContentModeImageView = {
+    lazy var imageView: FixedContentModeImageView = {
         let imageView = FixedContentModeImageView(fixedContentMode: contentMode)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill

@@ -15,6 +15,13 @@ class PromptBackupWalletView: UIView {
     private let backupButton = UIButton(type: .system)
     private let remindMeLaterButton = UIButton(type: .system)
     private let viewModel: PromptBackupWalletViewModel
+    private let imgView: UIImageView = {
+        let imgView = UIImageView(frame: .zero)
+        imgView.image = UIImage(named: "wallet-backup")
+        imgView.contentMode = .scaleAspectFit
+        imgView.clipsToBounds = true
+        return imgView
+    }()
 
     weak var delegate: PromptBackupWalletViewDelegate?
 
@@ -29,23 +36,32 @@ class PromptBackupWalletView: UIView {
         remindMeLaterButton.setContentHuggingPriority(.required, for: .horizontal)
 
         let row0 = [titleLabel, remindMeLaterButton].asStackView(axis: .horizontal)
-        let stackView = [
+        let stackView1 = [
             row0,
-            UIView.spacer(height: 10),
+            //UIView.spacer(height: 10),
             descriptionLabel,
-            UIView.spacer(height: 10),
+            UIView.spacer(height: 4),
             backupButton,
         ].asStackView(axis: .vertical, alignment: .leading)
+        //stackView1.translatesAutoresizingMaskIntoConstraints = false
+        
+        imgView.frame.size.width = min(self.frame.width * 0.24, 90)
+        
+        let stackView = [
+            imgView,
+            stackView1
+        ].asStackView(axis: .horizontal, distribution: .fillProportionally, spacing: 8, alignment: .center)
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        
         addSubview(stackView)
 
         NSLayoutConstraint.activate([
-            row0.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            row0.widthAnchor.constraint(equalTo: stackView1.widthAnchor),
 
-            descriptionLabel.widthAnchor.constraint(equalTo: backupButton.widthAnchor, constant: 30),
+            descriptionLabel.widthAnchor.constraint(equalTo: backupButton.widthAnchor, constant: 5),
 
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             stackView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
         ])
@@ -56,29 +72,30 @@ class PromptBackupWalletView: UIView {
     }
 
     func configure() {
-        backgroundColor = viewModel.backgroundColor
+        backgroundColor = .white //viewModel.backgroundColor
         cornerRadius = viewModel.cornerRadius
 
+        titleLabel.numberOfLines = 2
         titleLabel.font = viewModel.titleFont
-        titleLabel.textColor = viewModel.titleColor
+        titleLabel.textColor = R.color.azure() //viewModel.titleColor
         titleLabel.text = viewModel.title
         //For small screens
-        titleLabel.adjustsFontSizeToFitWidth = true
+        //titleLabel.adjustsFontSizeToFitWidth = true
 
         remindMeLaterButton.setImage(viewModel.moreButtonImage, for: .normal)
-        remindMeLaterButton.tintColor = viewModel.moreButtonColor
+        remindMeLaterButton.tintColor = R.color.azure() //viewModel.moreButtonColor
 
         descriptionLabel.font = viewModel.descriptionFont
-        descriptionLabel.textColor = viewModel.descriptionColor
+        descriptionLabel.textColor = R.color.azure() //viewModel.descriptionColor
         descriptionLabel.text = viewModel.description
         descriptionLabel.numberOfLines = 0
 
-        backupButton.tintColor = viewModel.backupButtonTitleColor
+        backupButton.tintColor = R.color.azure() //viewModel.backupButtonTitleColor
         backupButton.titleLabel?.font = viewModel.backupButtonTitleFont
-        backupButton.setBackgroundColor(viewModel.backupButtonBackgroundColor, forState: .normal)
+        backupButton.setBackgroundColor(R.color.azure()!, forState: .normal)//viewModel.backupButtonBackgroundColor, forState: .normal)
         backupButton.setTitleColor(viewModel.backupButtonTitleColor, for: .normal)
         backupButton.setTitle(viewModel.backupButtonTitle, for: .normal)
-        backupButton.setImage(viewModel.backupButtonImage, for: .normal)
+        //backupButton.setImage(viewModel.backupButtonImage, for: .normal)
         backupButton.contentEdgeInsets = viewModel.backupButtonContentEdgeInsets
         swapButtonTextAndImage(backupButton)
     }

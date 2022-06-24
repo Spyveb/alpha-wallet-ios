@@ -36,9 +36,9 @@ class SeedPhraseBackupIntroductionViewController: UIViewController {
 
         let stackView = [
             UIView.spacer(height: ScreenChecker.size(big: 32, medium: 22, small: 18)),
-            subtitleLabel,
-            UIView.spacer(height: ScreenChecker.size(big: 24, medium: 20, small: 18)),
             imageView,
+            UIView.spacer(height: ScreenChecker.size(big: 24, medium: 20, small: 18)),
+            subtitleLabel,
             UIView.spacer(height: ScreenChecker.size(big: 17, medium: 15, small: 10)),
             descriptionLabel1,
             ].asStackView(axis: .vertical)
@@ -50,14 +50,18 @@ class SeedPhraseBackupIntroductionViewController: UIViewController {
         footerBar.backgroundColor = .clear
         roundedBackground.addSubview(footerBar)
 
+        buttonsBar.cornerRadius = 4
         footerBar.addSubview(buttonsBar)
 
+        let window = UIApplication.shared.windows.first
+        let bottomPadding = window?.safeAreaInsets.bottom ?? 0
+        
         NSLayoutConstraint.activate([
             imageView.heightAnchor.constraint(equalToConstant: imageViewDimension),
 
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            stackView.topAnchor.constraint(equalTo: view.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: roundedBackground.leadingAnchor, constant: 5),
+            stackView.trailingAnchor.constraint(equalTo: roundedBackground.trailingAnchor, constant: -5),
+            stackView.topAnchor.constraint(equalTo: roundedBackground.topAnchor),
             stackView.bottomAnchor.constraint(lessThanOrEqualTo: footerBar.topAnchor),
 
             buttonsBar.leadingAnchor.constraint(equalTo: footerBar.leadingAnchor),
@@ -65,13 +69,13 @@ class SeedPhraseBackupIntroductionViewController: UIViewController {
             buttonsBar.bottomAnchor.constraint(equalTo: footerBar.bottomAnchor),
             buttonsBar.heightAnchor.constraint(equalToConstant: HorizontalButtonsBar.buttonsHeight),
 
-            footerBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            footerBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            footerBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).set(priority: .defaultHigh),
-            footerBar.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -Style.insets.safeBottom).set(priority: .required),
+            footerBar.leadingAnchor.constraint(equalTo: roundedBackground.leadingAnchor, constant: 10),
+            footerBar.trailingAnchor.constraint(equalTo: roundedBackground.trailingAnchor, constant: -10),
+            footerBar.bottomAnchor.constraint(equalTo: roundedBackground.bottomAnchor).set(priority: .defaultHigh),
+            footerBar.bottomAnchor.constraint(lessThanOrEqualTo: roundedBackground.bottomAnchor, constant: -15).set(priority: .required),
             footerBar.topAnchor.constraint(equalTo: buttonsBar.topAnchor),
-
-        ] + roundedBackground.anchorsConstraint(to: view))
+            
+        ] + roundedBackground.anchorsConstraint(to: view, edgeInsets: .init(top: 15, left: 15, bottom: 15 + bottomPadding, right: 15)))
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -115,5 +119,18 @@ class SeedPhraseBackupIntroductionViewController: UIViewController {
 
     @objc private func tappedExportButton() {
         delegate?.didTapBackupWallet(inViewController: self)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.view.layoutSubviews()
+        
+        let background = roundedBackground
+        background.layer.cornerRadius = 16
+        background.layer.masksToBounds = false
+        background.layer.shadowColor = UIColor.gray.cgColor
+        background.layer.shadowPath = UIBezierPath(roundedRect: background.bounds, cornerRadius: background.layer.cornerRadius).cgPath
+        background.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        background.layer.shadowOpacity = 0.5
+        background.layer.shadowRadius = 4.0
     }
 }

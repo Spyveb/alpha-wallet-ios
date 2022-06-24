@@ -108,19 +108,12 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SourceSansPro-Black.otf</string>
-		<string>SourceSansPro-Italic.ttf</string>
-		<string>SourceSansPro-BlackIt.otf</string>
-		<string>SourceSansPro-Bold.otf</string>
-		<string>SourceSansPro-BoldIt.otf</string>
-		<string>SourceSansPro-ExtraLight.otf</string>
-		<string>SourceSansPro-ExtraLightIt.otf</string>
-		<string>SourceSansPro-It.otf</string>
-		<string>SourceSansPro-Light.otf</string>
-		<string>SourceSansPro-LightIt.otf</string>
-		<string>SourceSansPro-Regular.otf</string>
-		<string>SourceSansPro-Semibold.otf</string>
-		<string>SourceSansPro-SemiboldIt.otf</string>
+		<string>Nunito-Medium.ttf</string>
+		<string>Nunito-Light.ttf</string>
+		<string>Nunito-Regular.ttf</string>
+		<string>Nunito-Bold.ttf</string>
+		<string>NUnito-Italic.ttf</string>
+		<string>Nunito-SemiBold.ttf</string>
 	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>

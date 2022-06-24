@@ -905,7 +905,6 @@
 		87713EB4264BAB5A00B1B9CB /* ActivityPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87713EB3264BAB5A00B1B9CB /* ActivityPageView.swift */; };
 		87713EB6264BAB6E00B1B9CB /* PriceAlertsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87713EB5264BAB6E00B1B9CB /* PriceAlertsPageView.swift */; };
 		87741F1827709073007F4604 /* TestnetTokenInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87741F1727709073007F4604 /* TestnetTokenInfoView.swift */; };
-		87741F1A277097BC007F4604 /* SourceSansPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87741F19277097BC007F4604 /* SourceSansPro-Italic.ttf */; };
 		87741F212770C71E007F4604 /* WhereAreMyTokensCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87741F202770C71E007F4604 /* WhereAreMyTokensCoordinator.swift */; };
 		87741FC527747C5C007F4604 /* TokenInstanceViewConfigurationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87741FC427747C5C007F4604 /* TokenInstanceViewConfigurationHelper.swift */; };
 		87757284282D46A800EAD907 /* TokenCardWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87757283282D46A800EAD907 /* TokenCardWebView.swift */; };
@@ -1114,12 +1113,6 @@
 		C80DC77E22AB7FAD009CFA1C /* XDAI-bridge.tsml in Resources */ = {isa = PBXBuildFile; fileRef = C80DC77D22AB7FAD009CFA1C /* XDAI-bridge.tsml */; };
 		C868C5292053BDE00059672B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C868C5282053BDE00059672B /* LaunchScreen.storyboard */; };
 		C868C536205409160059672B /* redeemInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = C868C534205409160059672B /* redeemInfo.html */; };
-		C876FF79204A79D300B7D0EA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C876FF6B204A79D300B7D0EA /* README.md */; };
-		C876FF7A204A79D300B7D0EA /* SIL Open Font License.txt in Resources */ = {isa = PBXBuildFile; fileRef = C876FF6C204A79D300B7D0EA /* SIL Open Font License.txt */; };
-		C876FF7D204A79D300B7D0EA /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C876FF6F204A79D300B7D0EA /* SourceSansPro-Bold.otf */; };
-		C876FF82204A79D300B7D0EA /* SourceSansPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C876FF74204A79D300B7D0EA /* SourceSansPro-Light.otf */; };
-		C876FF84204A79D300B7D0EA /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C876FF76204A79D300B7D0EA /* SourceSansPro-Regular.otf */; };
-		C876FF85204A79D300B7D0EA /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C876FF77204A79D300B7D0EA /* SourceSansPro-Semibold.otf */; };
 		C880330C2054371500D73D6F /* non_asset_catalog_redemption_location.png in Resources */ = {isa = PBXBuildFile; fileRef = C88033092054371500D73D6F /* non_asset_catalog_redemption_location.png */; };
 		C880330D2054371500D73D6F /* non_asset_catalog_redemption_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C880330A2054371500D73D6F /* non_asset_catalog_redemption_location@2x.png */; };
 		C880330E2054371500D73D6F /* non_asset_catalog_redemption_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C880330B2054371500D73D6F /* non_asset_catalog_redemption_location@3x.png */; };
@@ -1134,6 +1127,35 @@
 		CCA4FE381FD428B300749AE4 /* JailbreakChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA4FE371FD428B300749AE4 /* JailbreakChecker.swift */; };
 		CCA4FE3A1FD42B4100749AE4 /* FakeJailbreakChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA4FE391FD42B4100749AE4 /* FakeJailbreakChecker.swift */; };
 		CCCD74FD1FD2D38D004A087D /* CheckDeviceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCD74FC1FD2D38D004A087D /* CheckDeviceCoordinator.swift */; };
+		FD223C2028633D240075CE49 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD223C1828633D230075CE49 /* Nunito-Medium.ttf */; };
+		FD223C2128633D240075CE49 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD223C1928633D230075CE49 /* Nunito-Light.ttf */; };
+		FD223C2228633D240075CE49 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD223C1A28633D230075CE49 /* Nunito-Regular.ttf */; };
+		FD223C2328633D240075CE49 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD223C1B28633D230075CE49 /* Nunito-SemiBold.ttf */; };
+		FD223C2428633D240075CE49 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD223C1C28633D230075CE49 /* Nunito-Bold.ttf */; };
+		FD223C2528633D240075CE49 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = FD223C1D28633D230075CE49 /* OFL.txt */; };
+		FD223C2628633D240075CE49 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = FD223C1E28633D230075CE49 /* README.txt */; };
+		FD223C2728633D240075CE49 /* Nunito-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD223C1F28633D230075CE49 /* Nunito-Italic.ttf */; };
+		FD223C2C286580890075CE49 /* AccountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD223C2B286580890075CE49 /* AccountViewCell.xib */; };
+		FD223C4A286600050075CE49 /* ARVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C30286600040075CE49 /* ARVC.swift */; };
+		FD223C4B286600050075CE49 /* ViewControllerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C31286600040075CE49 /* ViewControllerProtocols.swift */; };
+		FD223C4C286600050075CE49 /* ViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C32286600040075CE49 /* ViewControllerViewModel.swift */; };
+		FD223C4D286600050075CE49 /* VirtualObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C34286600040075CE49 /* VirtualObjectManager.swift */; };
+		FD223C4E286600050075CE49 /* VirtualObjects.json in Resources */ = {isa = PBXBuildFile; fileRef = FD223C35286600040075CE49 /* VirtualObjects.json */; };
+		FD223C4F286600050075CE49 /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C36286600040075CE49 /* VirtualObject.swift */; };
+		FD223C50286600050075CE49 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C38286600050075CE49 /* Extensions.swift */; };
+		FD223C51286600050075CE49 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C3A286600050075CE49 /* Utilities.swift */; };
+		FD223C52286600050075CE49 /* ARSCNView+HitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C3B286600050075CE49 /* ARSCNView+HitTests.swift */; };
+		FD223C53286600050075CE49 /* TextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C3C286600050075CE49 /* TextManager.swift */; };
+		FD223C54286600050075CE49 /* SceneExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C3D286600050075CE49 /* SceneExtensions.swift */; };
+		FD223C55286600050075CE49 /* FocusSquareSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C40286600050075CE49 /* FocusSquareSegment.swift */; };
+		FD223C56286600050075CE49 /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C41286600050075CE49 /* FocusSquare.swift */; };
+		FD223C57286600050075CE49 /* ARObjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C43286600050075CE49 /* ARObjectCollectionViewCell.swift */; };
+		FD223C58286600050075CE49 /* TwoFingerGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C45286600050075CE49 /* TwoFingerGesture.swift */; };
+		FD223C59286600050075CE49 /* SingleFingerGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C46286600050075CE49 /* SingleFingerGesture.swift */; };
+		FD223C5A286600050075CE49 /* Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C47286600050075CE49 /* Gesture.swift */; };
+		FD223C5B286600050075CE49 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD223C48286600050075CE49 /* Plane.swift */; };
+		FD223C5C286600050075CE49 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = FD223C49286600050075CE49 /* Models.scnassets */; };
+		FD223C5E286600610075CE49 /* AR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD223C5D286600610075CE49 /* AR.storyboard */; };
 		FD4F1636285347580074F2A1 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD4F1635285347580074F2A1 /* Splash.storyboard */; };
 		FDB9112628575AB400220202 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB9112528575AB400220202 /* OnboardingVC.swift */; };
 		FDDEC2AF28535BD600246797 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDEC2AE28535BD600246797 /* Page.swift */; };
@@ -2087,7 +2109,6 @@
 		87713EB3264BAB5A00B1B9CB /* ActivityPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPageView.swift; sourceTree = "<group>"; };
 		87713EB5264BAB6E00B1B9CB /* PriceAlertsPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceAlertsPageView.swift; sourceTree = "<group>"; };
 		87741F1727709073007F4604 /* TestnetTokenInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestnetTokenInfoView.swift; sourceTree = "<group>"; };
-		87741F19277097BC007F4604 /* SourceSansPro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Italic.ttf"; sourceTree = "<group>"; };
 		87741F202770C71E007F4604 /* WhereAreMyTokensCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereAreMyTokensCoordinator.swift; sourceTree = "<group>"; };
 		87741FC427747C5C007F4604 /* TokenInstanceViewConfigurationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInstanceViewConfigurationHelper.swift; sourceTree = "<group>"; };
 		87757283282D46A800EAD907 /* TokenCardWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCardWebView.swift; sourceTree = "<group>"; };
@@ -2300,12 +2321,6 @@
 		C846409321B6DFA200031CA2 /* libxslt.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxslt.tbd; path = usr/lib/libxslt.tbd; sourceTree = SDKROOT; };
 		C868C5282053BDE00059672B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C868C535205409160059672B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/redeemInfo.html; sourceTree = "<group>"; };
-		C876FF6B204A79D300B7D0EA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C876FF6C204A79D300B7D0EA /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
-		C876FF6F204A79D300B7D0EA /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file.otf; path = "SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
-		C876FF74204A79D300B7D0EA /* SourceSansPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file.otf; path = "SourceSansPro-Light.otf"; sourceTree = "<group>"; };
-		C876FF76204A79D300B7D0EA /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file.otf; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
-		C876FF77204A79D300B7D0EA /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file.otf; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		C88033092054371500D73D6F /* non_asset_catalog_redemption_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = non_asset_catalog_redemption_location.png; sourceTree = "<group>"; };
 		C880330A2054371500D73D6F /* non_asset_catalog_redemption_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "non_asset_catalog_redemption_location@2x.png"; sourceTree = "<group>"; };
 		C880330B2054371500D73D6F /* non_asset_catalog_redemption_location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "non_asset_catalog_redemption_location@3x.png"; sourceTree = "<group>"; };
@@ -2330,6 +2345,35 @@
 		EAC6758A27A096EC009C3344 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fi; path = fi.lproj/sellInfo.html; sourceTree = "<group>"; };
 		EAC6758B27A096EC009C3344 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fi; path = fi.lproj/redeemInfo.html; sourceTree = "<group>"; };
 		EAC6758C27A096ED009C3344 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FD223C1828633D230075CE49 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
+		FD223C1928633D230075CE49 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
+		FD223C1A28633D230075CE49 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		FD223C1B28633D230075CE49 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		FD223C1C28633D230075CE49 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		FD223C1D28633D230075CE49 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		FD223C1E28633D230075CE49 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		FD223C1F28633D230075CE49 /* Nunito-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Italic.ttf"; sourceTree = "<group>"; };
+		FD223C2B286580890075CE49 /* AccountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewCell.xib; sourceTree = "<group>"; };
+		FD223C30286600040075CE49 /* ARVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARVC.swift; sourceTree = "<group>"; };
+		FD223C31286600040075CE49 /* ViewControllerProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocols.swift; sourceTree = "<group>"; };
+		FD223C32286600040075CE49 /* ViewControllerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerViewModel.swift; sourceTree = "<group>"; };
+		FD223C34286600040075CE49 /* VirtualObjectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectManager.swift; sourceTree = "<group>"; };
+		FD223C35286600040075CE49 /* VirtualObjects.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VirtualObjects.json; sourceTree = "<group>"; };
+		FD223C36286600040075CE49 /* VirtualObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObject.swift; sourceTree = "<group>"; };
+		FD223C38286600050075CE49 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FD223C3A286600050075CE49 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		FD223C3B286600050075CE49 /* ARSCNView+HitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARSCNView+HitTests.swift"; sourceTree = "<group>"; };
+		FD223C3C286600050075CE49 /* TextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextManager.swift; sourceTree = "<group>"; };
+		FD223C3D286600050075CE49 /* SceneExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneExtensions.swift; sourceTree = "<group>"; };
+		FD223C40286600050075CE49 /* FocusSquareSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusSquareSegment.swift; sourceTree = "<group>"; };
+		FD223C41286600050075CE49 /* FocusSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
+		FD223C43286600050075CE49 /* ARObjectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARObjectCollectionViewCell.swift; sourceTree = "<group>"; };
+		FD223C45286600050075CE49 /* TwoFingerGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoFingerGesture.swift; sourceTree = "<group>"; };
+		FD223C46286600050075CE49 /* SingleFingerGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleFingerGesture.swift; sourceTree = "<group>"; };
+		FD223C47286600050075CE49 /* Gesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gesture.swift; sourceTree = "<group>"; };
+		FD223C48286600050075CE49 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		FD223C49286600050075CE49 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
+		FD223C5D286600610075CE49 /* AR.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AR.storyboard; sourceTree = "<group>"; };
 		FD4F1635285347580074F2A1 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		FDB9112528575AB400220202 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		FDDEC2AE28535BD600246797 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -2524,6 +2568,7 @@
 		2912CCF71F6A830700C6CBE3 /* AlphaWallet */ = {
 			isa = PBXGroup;
 			children = (
+				FD223C2D2865FF900075CE49 /* AR */,
 				BCA2E4E5284A1F9600C9BC65 /* Library */,
 				87FBF2B628056B8E00616B7D /* GoogleService-Info.plist */,
 				87F15B1327F45B2B00EB9787 /* Covalent */,
@@ -2823,6 +2868,7 @@
 				5E7C7E7720DE64069CCF37D5 /* AccountViewTableSectionHeader.swift */,
 				8712F336265BCAEF0043493B /* WalletSummaryTableViewCell.swift */,
 				87BC890D26B7EDC6005482F4 /* WalletSummaryView.swift */,
+				FD223C2B286580890075CE49 /* AccountViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5575,23 +5621,9 @@
 		C876FF69204A77B400B7D0EA /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				C876FF6A204A79D300B7D0EA /* source-sans-pro */,
+				FD223C1728633D230075CE49 /* Nunito */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		C876FF6A204A79D300B7D0EA /* source-sans-pro */ = {
-			isa = PBXGroup;
-			children = (
-				87741F19277097BC007F4604 /* SourceSansPro-Italic.ttf */,
-				C876FF6B204A79D300B7D0EA /* README.md */,
-				C876FF6C204A79D300B7D0EA /* SIL Open Font License.txt */,
-				C876FF6F204A79D300B7D0EA /* SourceSansPro-Bold.otf */,
-				C876FF74204A79D300B7D0EA /* SourceSansPro-Light.otf */,
-				C876FF76204A79D300B7D0EA /* SourceSansPro-Regular.otf */,
-				C876FF77204A79D300B7D0EA /* SourceSansPro-Semibold.otf */,
-			);
-			path = "source-sans-pro";
 			sourceTree = "<group>";
 		};
 		C8803302205436EE00D73D6F /* ImagesOutsideAssetCatalog */ = {
@@ -5656,6 +5688,120 @@
 				87C650C225F2408E007B02CB /* ServerUnavailableCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		FD223C1728633D230075CE49 /* Nunito */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C1828633D230075CE49 /* Nunito-Medium.ttf */,
+				FD223C1928633D230075CE49 /* Nunito-Light.ttf */,
+				FD223C1A28633D230075CE49 /* Nunito-Regular.ttf */,
+				FD223C1B28633D230075CE49 /* Nunito-SemiBold.ttf */,
+				FD223C1C28633D230075CE49 /* Nunito-Bold.ttf */,
+				FD223C1D28633D230075CE49 /* OFL.txt */,
+				FD223C1E28633D230075CE49 /* README.txt */,
+				FD223C1F28633D230075CE49 /* Nunito-Italic.ttf */,
+			);
+			path = Nunito;
+			sourceTree = "<group>";
+		};
+		FD223C2D2865FF900075CE49 /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C37286600040075CE49 /* App Extensions */,
+				FD223C49286600050075CE49 /* Models.scnassets */,
+				FD223C5D286600610075CE49 /* AR.storyboard */,
+				FD223C2E286600040075CE49 /* MVVM */,
+				FD223C3E286600050075CE49 /* UI Elements */,
+				FD223C39286600050075CE49 /* Utilities */,
+				FD223C33286600040075CE49 /* Virtual Objects */,
+			);
+			path = AR;
+			sourceTree = "<group>";
+		};
+		FD223C2E286600040075CE49 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C2F286600040075CE49 /* ViewController */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		FD223C2F286600040075CE49 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C30286600040075CE49 /* ARVC.swift */,
+				FD223C31286600040075CE49 /* ViewControllerProtocols.swift */,
+				FD223C32286600040075CE49 /* ViewControllerViewModel.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FD223C33286600040075CE49 /* Virtual Objects */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C34286600040075CE49 /* VirtualObjectManager.swift */,
+				FD223C35286600040075CE49 /* VirtualObjects.json */,
+				FD223C36286600040075CE49 /* VirtualObject.swift */,
+			);
+			path = "Virtual Objects";
+			sourceTree = "<group>";
+		};
+		FD223C37286600040075CE49 /* App Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C38286600050075CE49 /* Extensions.swift */,
+			);
+			path = "App Extensions";
+			sourceTree = "<group>";
+		};
+		FD223C39286600050075CE49 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C3A286600050075CE49 /* Utilities.swift */,
+				FD223C3B286600050075CE49 /* ARSCNView+HitTests.swift */,
+				FD223C3C286600050075CE49 /* TextManager.swift */,
+				FD223C3D286600050075CE49 /* SceneExtensions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		FD223C3E286600050075CE49 /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C3F286600050075CE49 /* Focus Squares */,
+				FD223C42286600050075CE49 /* CollectionView Cell */,
+				FD223C44286600050075CE49 /* Gestures */,
+				FD223C48286600050075CE49 /* Plane.swift */,
+			);
+			path = "UI Elements";
+			sourceTree = "<group>";
+		};
+		FD223C3F286600050075CE49 /* Focus Squares */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C40286600050075CE49 /* FocusSquareSegment.swift */,
+				FD223C41286600050075CE49 /* FocusSquare.swift */,
+			);
+			path = "Focus Squares";
+			sourceTree = "<group>";
+		};
+		FD223C42286600050075CE49 /* CollectionView Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C43286600050075CE49 /* ARObjectCollectionViewCell.swift */,
+			);
+			path = "CollectionView Cell";
+			sourceTree = "<group>";
+		};
+		FD223C44286600050075CE49 /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				FD223C45286600050075CE49 /* TwoFingerGesture.swift */,
+				FD223C46286600050075CE49 /* SingleFingerGesture.swift */,
+				FD223C47286600050075CE49 /* Gesture.swift */,
+			);
+			path = Gestures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5834,30 +5980,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C876FF82204A79D300B7D0EA /* SourceSansPro-Light.otf in Resources */,
-				C876FF84204A79D300B7D0EA /* SourceSansPro-Regular.otf in Resources */,
 				87B93B142726C79400F6EA73 /* helpers.js in Resources */,
 				C868C5292053BDE00059672B /* LaunchScreen.storyboard in Resources */,
 				87620024266E00F70059B05A /* known_contract.json in Resources */,
 				87D5BBCC2727D2920053E6D2 /* schema.json in Resources */,
-				C876FF85204A79D300B7D0EA /* SourceSansPro-Semibold.otf in Resources */,
 				C880330E2054371500D73D6F /* non_asset_catalog_redemption_location@3x.png in Resources */,
 				C880332020551DF800D73D6F /* howDoIGetMyMoneyInfo.html in Resources */,
 				613D04891FDE15F8008DE72E /* COMODO ECC Domain Validation Secure Server CA 2.cer in Resources */,
 				C887C53A2057B703005ACF81 /* termsOfService.html in Resources */,
-				C876FF7D204A79D300B7D0EA /* SourceSansPro-Bold.otf in Resources */,
+				FD223C2128633D240075CE49 /* Nunito-Light.ttf in Resources */,
+				FD223C2028633D240075CE49 /* Nunito-Medium.ttf in Resources */,
+				FD223C2628633D240075CE49 /* README.txt in Resources */,
 				87FBF2B728056B8E00616B7D /* GoogleService-Info.plist in Resources */,
+				FD223C2728633D240075CE49 /* Nunito-Italic.ttf in Resources */,
 				C880330D2054371500D73D6F /* non_asset_catalog_redemption_location@2x.png in Resources */,
 				771AA966200D5F1900D25403 /* WordCollectionViewCell.xib in Resources */,
 				87B93B112726C59D00F6EA73 /* BrowserStorageSubscription.js in Resources */,
 				87B93B102726C59D00F6EA73 /* config.js in Resources */,
+				FD223C2328633D240075CE49 /* Nunito-SemiBold.ttf in Resources */,
+				FD223C4E286600050075CE49 /* VirtualObjects.json in Resources */,
 				C88033122055034E00D73D6F /* sellInfo.html in Resources */,
 				C868C536205409160059672B /* redeemInfo.html in Resources */,
-				C876FF7A204A79D300B7D0EA /* SIL Open Font License.txt in Resources */,
+				FD223C2428633D240075CE49 /* Nunito-Bold.ttf in Resources */,
 				C880330C2054371500D73D6F /* non_asset_catalog_redemption_location.png in Resources */,
-				87741F1A277097BC007F4604 /* SourceSansPro-Italic.ttf in Resources */,
+				FD223C5E286600610075CE49 /* AR.storyboard in Resources */,
 				87B93B0F2726C59D00F6EA73 /* content.js in Resources */,
-				C876FF79204A79D300B7D0EA /* README.md in Resources */,
+				FD223C2528633D240075CE49 /* OFL.txt in Resources */,
 				C880331F20551DF800D73D6F /* howDoITransferETHIntoMyWalletInfo.html in Resources */,
 				C887C5392057B703005ACF81 /* privacyPolicy.html in Resources */,
 				87AA5DCC27303C89000A2DEA /* EnjinOauth.graphql in Resources */,
@@ -5874,8 +6022,11 @@
 				02425FB327852B85007ECF94 /* chains.zip in Resources */,
 				5E7C7F808D0B0B19ECEA6623 /* ETH.tsml in Resources */,
 				5E7C706322B52C0D0CED8018 /* aETH.tsml in Resources */,
+				FD223C5C286600050075CE49 /* Models.scnassets in Resources */,
 				5E7C7CE29C74DF7FDDDB6A0D /* ERC721-TokenScript.tsml in Resources */,
 				BCA2E4E9284A233F00C9BC65 /* TabBar.storyboard in Resources */,
+				FD223C2228633D240075CE49 /* Nunito-Regular.ttf in Resources */,
+				FD223C2C286580890075CE49 /* AccountViewCell.xib in Resources */,
 				5E7C7E1C2976FA57D53BC2CE /* ERC1155.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6287,6 +6438,7 @@
 				AA893ED5203C3E5400CDCED1 /* TokenBalance.swift in Sources */,
 				29850D251F6B27A800791A49 /* R.generated.swift in Sources */,
 				8780FDBF27C3CC0F00BBE9DD /* ChangeSet.swift in Sources */,
+				FD223C53286600050075CE49 /* TextManager.swift in Sources */,
 				737D1675202BDCB400B42DDE /* UINavigationController.swift in Sources */,
 				8717D37627B415C500FB789D /* SingleServerWalletConnectSession.swift in Sources */,
 				AA4E531820425A9500143A09 /* Date.swift in Sources */,
@@ -6529,6 +6681,7 @@
 				87713EB6264BAB6E00B1B9CB /* PriceAlertsPageView.swift in Sources */,
 				442FCE2BEE8D475C7DEB39C1 /* RedeemTokenCardQuantitySelectionViewModel.swift in Sources */,
 				8739BBC726CD29510045CFED /* NFTAssetSelectionViewController.swift in Sources */,
+				FD223C4D286600050075CE49 /* VirtualObjectManager.swift in Sources */,
 				442FCB9CF5BC243F0705F4FE /* TokenCardRedemptionViewController.swift in Sources */,
 				874DED0C24C05E88006C8FCE /* TransactionConfirmationViewModel.swift in Sources */,
 				879F185126E73F59000602F2 /* TransferTokenBatchCardsViaWalletAddressViewControllerViewModel.swift in Sources */,
@@ -6569,6 +6722,7 @@
 				87ED8FA92488E4430005C69B /* SendViewSectionHeader.swift in Sources */,
 				5E7C76F8CB67466725C590CE /* FungibleTokenViewCellViewModel.swift in Sources */,
 				8722F86D25F79A4700293D89 /* UITableViewCell.swift in Sources */,
+				FD223C4A286600050075CE49 /* ARVC.swift in Sources */,
 				5E7C78407F6DCB0EDD562DF6 /* NonFungibleTokenViewCellViewModel.swift in Sources */,
 				5E7C7CE5CA19183FCED8C907 /* TokensViewModel.swift in Sources */,
 				879FD3A3273BF8C100D9747D /* Storage.swift in Sources */,
@@ -6608,6 +6762,7 @@
 				5E7C7567A690B6B8F889AE83 /* SendViewController.swift in Sources */,
 				5E7C72E1D4B4B4C8443F3DA1 /* FungibleTokenHeaderView.swift in Sources */,
 				87BB63E0265E21E400FF702A /* WalletBalance.swift in Sources */,
+				FD223C50286600050075CE49 /* Extensions.swift in Sources */,
 				5E7C713ACE8C72642B1C9F93 /* TokenInfoPageViewModel.swift in Sources */,
 				87DB61C1264A94CD009FBDDE /* ABI.swift in Sources */,
 				5E7C7376B566E5A59CC8F463 /* ImportMagicTokenViewControllerViewModel.swift in Sources */,
@@ -6624,6 +6779,7 @@
 				5E7C71DAA5DAFF764F92587D /* SetTransferTokensCardExpiryDateViewController.swift in Sources */,
 				879F186026E74543000602F2 /* ToolButtonsBarView.swift in Sources */,
 				5E7C745C725F3F34037DCC68 /* SetTransferTokensCardExpiryDateViewControllerViewModel.swift in Sources */,
+				FD223C56286600050075CE49 /* FocusSquare.swift in Sources */,
 				5E7C74B5796FB59C8427C7A0 /* GenerateTransferMagicLinkViewController.swift in Sources */,
 				87620026266E07490059B05A /* ThreadSafeDictionary.swift in Sources */,
 				5E7C76696EF7F27EC0788CDD /* GenerateTransferMagicLinkViewControllerViewModel.swift in Sources */,
@@ -6637,6 +6793,7 @@
 				5E7C7317533D24B6A292F88D /* UIStackView+Array.swift in Sources */,
 				87F15B2127F5828F00EB9787 /* ReachabilityManager.swift in Sources */,
 				5E7C78F1D29280E3FF4EAF5E /* RoundedBackground.swift in Sources */,
+				FD223C5A286600050075CE49 /* Gesture.swift in Sources */,
 				87F539FC2817E7B200BD8017 /* OldestTransactionSchedulerProvider.swift in Sources */,
 				87757284282D46A800EAD907 /* TokenCardWebView.swift in Sources */,
 				8712A38726F475C00009C376 /* StorageType.swift in Sources */,
@@ -6695,6 +6852,7 @@
 				87F15B2627F6E99800EB9787 /* PendingTransactionProvider.swift in Sources */,
 				5E7C7B414FA8A428798D73EF /* OpenSeaNonFungibleTokenHandling.swift in Sources */,
 				87F15B1227F365F000EB9787 /* TokenMappedToTicker.swift in Sources */,
+				FD223C54286600050075CE49 /* SceneExtensions.swift in Sources */,
 				5E7C75CE1F8F94D538A48FAD /* Web3Error.swift in Sources */,
 				5E7C78A31A16600FBA5C9956 /* ScanQRCodeCoordinator.swift in Sources */,
 				02C6B6A42828E2EF00A6FEF0 /* InitialNetworkSelectionView.swift in Sources */,
@@ -6729,6 +6887,7 @@
 				5E7C767C9166726E96ED4C07 /* DelegateContract.swift in Sources */,
 				878EE94E255BE1F0000210DE /* UrlSchemeCoordinator.swift in Sources */,
 				8712A38926F475DC0009C376 /* PriceAlertService.swift in Sources */,
+				FD223C4C286600050075CE49 /* ViewControllerViewModel.swift in Sources */,
 				023286E2277D7960007D33C5 /* AddMultipleCustomRpcView.swift in Sources */,
 				5E7C77D5AD018763345D8DD5 /* CanOpenContractWebPage.swift in Sources */,
 				5E7C7F1B297CE042114EF095 /* LockEnterPasscodeViewController.swift in Sources */,
@@ -6767,12 +6926,14 @@
 				5E7C7E02785866606FF298F3 /* OpenSeaNonFungibleTokenViewCellViewModel.swift in Sources */,
 				5E7C772EC476993A170C840B /* GenerateSellMagicLinkViewController.swift in Sources */,
 				5E7C7AC88DB7EB58FDAF1B21 /* ConfirmSignMessageViewControllerViewModel.swift in Sources */,
+				FD223C55286600050075CE49 /* FocusSquareSegment.swift in Sources */,
 				02334299278480CF00492080 /* AddMultipleCustomRpcModel.swift in Sources */,
 				87442BD827D615B500EA2209 /* CheckTransactionStateViewController.swift in Sources */,
 				5E7C7A67B6143DFB9B1CF02B /* ConfirmSignMessageTableViewCell.swift in Sources */,
 				5E7C74C6110D4E93C759D5DB /* ConfirmSignMessageTableViewCellViewModel.swift in Sources */,
 				5E7C7A928412AF3E16CDA038 /* AmountTextField.swift in Sources */,
 				5E7C7131E338A806132D989B /* DateEntryField.swift in Sources */,
+				FD223C5B286600050075CE49 /* Plane.swift in Sources */,
 				5E7C7E7AEF01B9D170228342 /* TimeEntryField.swift in Sources */,
 				87DD0C42279979F900460260 /* EnterKeystorePasswordViewModel.swift in Sources */,
 				8703F66726135B330082EE25 /* ChartHistory.swift in Sources */,
@@ -6902,6 +7063,7 @@
 				5E7C716F9A06085DF5F903E8 /* UserEntryOrigin.swift in Sources */,
 				C6959E32246C1D720095DE91 /* SeedPhraseSuggestionViewCell.swift in Sources */,
 				5E7C742B144FBC72E082B8F3 /* TokenScript.swift in Sources */,
+				FD223C58286600050075CE49 /* TwoFingerGesture.swift in Sources */,
 				5E7C740398B56DAED1D0C75A /* XmlContext.swift in Sources */,
 				5E7C798A5D213DD92F24CBFB /* AssetImplicitAttributes.swift in Sources */,
 				5E7C7D6AC52076681FE8C43E /* AssetDefinitionStore.swift in Sources */,
@@ -6967,6 +7129,7 @@
 				5E7C7E34C8D389FB7056EB7D /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,
 				5E7C7AD59EA28935E32B3E91 /* KeystoreBackupIntroductionViewController.swift in Sources */,
 				5E7C76AFB9D51A7890FD4C60 /* KeystoreBackupIntroductionViewModel.swift in Sources */,
+				FD223C52286600050075CE49 /* ARSCNView+HitTests.swift in Sources */,
 				879F184626E73CAA000602F2 /* NFTAssetListViewController.swift in Sources */,
 				5E7C70C8C9FB794488211122 /* CoordinatorThatEnds.swift in Sources */,
 				874C6D8125E3FF2300AD8380 /* ConfirmationHeaderView.swift in Sources */,
@@ -7022,6 +7185,7 @@
 				5E7C783EA4C21609101A0F99 /* EmptyDapps.swift in Sources */,
 				5E7C739611741D5E61900992 /* Eip681Parser.swift in Sources */,
 				5E7C77217AFE4BD40C25FD8C /* AddressOrEnsName.swift in Sources */,
+				FD223C4B286600050075CE49 /* ViewControllerProtocols.swift in Sources */,
 				87897B9C25EF7C08006E3C75 /* ShowSeedPhraseIntroductionViewController.swift in Sources */,
 				87ED8FAD2488EA610005C69B /* SupportViewController.swift in Sources */,
 				5E7C72D6C4AB97A1FCB3AA32 /* MnemonicInWordListValidator.swift in Sources */,
@@ -7034,12 +7198,14 @@
 				02C91C822770143E00EB10FB /* AvailableRpcNetwork.swift in Sources */,
 				8499DAB3D06965FDC1E8FCAF /* IsInterfaceSupported165.swift in Sources */,
 				87BBF98D2563DD7600FF4846 /* WalletConnectSessionCoordinator.swift in Sources */,
+				FD223C57286600050075CE49 /* ARObjectCollectionViewCell.swift in Sources */,
 				5E7C726DE238609C1FB2E320 /* Constants+Credentials.swift in Sources */,
 				5E7C7F3CB1F280E6795A479C /* EventOrigin.swift in Sources */,
 				5E7C7A2DBFF7FB3B8B5DEB1B /* EventInstance.swift in Sources */,
 				5E7C7D918B514B4C2F8DF296 /* EventSourceCoordinator.swift in Sources */,
 				5E7C733C6C4DD52495427B66 /* NonActivityEventsDataStore.swift in Sources */,
 				5E7C797F3278A290BE47BFA2 /* TokenIdOrEvent.swift in Sources */,
+				FD223C4F286600050075CE49 /* VirtualObject.swift in Sources */,
 				870CC47D27C6566400A19380 /* AutoDetectTokensOperation.swift in Sources */,
 				5E7C7193C577A84710D71F5C /* TokenScriptFilterParser.swift in Sources */,
 				5E7C708F30E73521E6A494D5 /* TokenScriptSelection.swift in Sources */,
@@ -7064,6 +7230,7 @@
 				5E7C702C2DAB1DF984193D14 /* EventActivity.swift in Sources */,
 				5E7C77F628AF6B67A1C29748 /* EventsActivityDataStore.swift in Sources */,
 				5E7C7C869A09FD09DCE77EE6 /* ActivityCellViewModel.swift in Sources */,
+				FD223C51286600050075CE49 /* Utilities.swift in Sources */,
 				5E7C7D0A8197BF7725619D87 /* TransactionRowCellViewModel.swift in Sources */,
 				5E7C7BDE0060F5C350AFD34B /* ActivityViewController.swift in Sources */,
 				5E7C76194F5934264E5BABC8 /* ActivityViewModel.swift in Sources */,
@@ -7163,6 +7330,7 @@
 				5E7C7FF312AB61DBEBD86C94 /* WhatsNewViewModels.swift in Sources */,
 				02F4E8B627715EA000D89C19 /* SaveCustomRpcOverallViewController.swift in Sources */,
 				5E7C7CC1E06FFC3A5BEBF1EC /* WhatsNewViews.swift in Sources */,
+				FD223C59286600050075CE49 /* SingleFingerGesture.swift in Sources */,
 				5E7C71967C34DD3F207F8126 /* WhatsNewExperimentCoordinator.swift in Sources */,
 				5E7C7062A44AF416B110008A /* PingInfuraCoordinator.swift in Sources */,
 				5E7C788C6ACB6E5AA24216A6 /* FiatOnRampCoordinator.swift in Sources */,

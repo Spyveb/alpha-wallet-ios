@@ -7,19 +7,27 @@ class AccountViewCell: UITableViewCell {
     private let addressLabel = UILabel()
     private let apprecation24hourLabel = UILabel()
     private let balanceLabel = UILabel()
-    private let blockieImageView = BlockieImageView(size: .init(width: 60, height: 60))
-    lazy private var selectedIndicator: UIView = {
-        let indicator = UIView()
-        indicator.layer.cornerRadius = Style.SelectionIndicator.width / 2.0
-        indicator.borderWidth = 0.0
-        indicator.backgroundColor = Style.SelectionIndicator.color
-        NSLayoutConstraint.activate([
-            indicator.widthAnchor.constraint(equalToConstant: Style.SelectionIndicator.width),
-            indicator.heightAnchor.constraint(equalToConstant: Style.SelectionIndicator.height)
-        ])
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.isHidden = true
-        return indicator
+    private let blockieImageView = BlockieImageView(size: .init(width: 58, height: 68))
+    private let imgToken = UIImageView()
+    private let background = RoundedBackground()
+//    lazy private var selectedIndicator: UIView = {
+//        let indicator = UIView()
+//        indicator.layer.cornerRadius = Style.SelectionIndicator.width / 2.0
+//        indicator.borderWidth = 0.0
+//        indicator.backgroundColor = Style.SelectionIndicator.color
+//        NSLayoutConstraint.activate([
+//            indicator.widthAnchor.constraint(equalToConstant: Style.SelectionIndicator.width),
+//            indicator.heightAnchor.constraint(equalToConstant: Style.SelectionIndicator.height)
+//        ])
+//        indicator.translatesAutoresizingMaskIntoConstraints = false
+//        indicator.isHidden = true
+//        return indicator
+//    }()
+    lazy private var selectedIndicator: UIImageView = {
+        let imgView = UIImageView(frame: .zero)
+        imgView.image = UIImage(systemName: "checkmark.circle.fill")
+        imgView.tintColor = R.color.azure()
+        return imgView
     }()
     private let imgView: UIImageView = {
         let imgView = UIImageView(frame: .zero)
@@ -31,52 +39,98 @@ class AccountViewCell: UITableViewCell {
     private var cancelable = Set<AnyCancellable>()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        let screenSize = UIScreen.main.bounds.size
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         separatorInset = .zero
         selectionStyle = .none
         isUserInteractionEnabled = true
+        //background.frame = CGRect(x: 15, y: 5, width: screenSize.width - 30, height: 186)
+        background.frame.size.width = screenSize.width - 30
+        background.frame.size.height = 186
+        addSubview(background)
+        background.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.lineBreakMode = .byTruncatingMiddle
         addressLabel.frame.size.width = 120
-        blockieImageView.frame.origin.x = 53
+        blockieImageView.frame = CGRect(x: 38, y: 60, width: 58, height: 68)
+        imgToken.frame = CGRect(x: 38, y: 60, width: 58, height: 68)
+        
+        balanceLabel.textAlignment = .left
+        apprecation24hourLabel.textAlignment = .right
 //        setupHexagonImageView(blockieImageView)
-
+        
+        let row3 = UIView()
+        //row3.translatesAutoresizingMaskIntoConstraints = false
+        row3.addSubview(balanceLabel)
+        row3.addSubview(apprecation24hourLabel)
+        row3.backgroundColor = .clear
+        row3.frame = CGRect(x: 42, y: 150, width: screenSize.width - 42 - 25, height: 22)
+        balanceLabel.frame = CGRect(x: 0, y: 0, width: 140, height: 22)
+        apprecation24hourLabel.frame = CGRect(x: row3.frame.width - 140, y: 0, width: 130, height: 22)
+        
         let stackView = [
-            [UILabel(), addressLabel].asStackView(spacing: 80, alignment: .trailing),
-            [blockieImageView].asStackView(spacing: 10),
-            [balanceLabel, UILabel(), apprecation24hourLabel].asStackView(spacing: 10),
-            
-        ].asStackView(axis: .vertical, spacing: 20, alignment: .leading)
+            [UIView.spacerWidth(screenSize.width - 32 - 25 - 100), addressLabel].asStackView(),
+            //blockieImageView,
+            //[balanceLabel, UIView.spacerWidth(10, backgroundColor: .clear, alpha: 0, flexible: true), apprecation24hourLabel].asStackView(),
+            //row3
+        ].asStackView(axis: .vertical, alignment: .leading)
 
 //        let stackView = [blockieImageView, leftStackView, .spacerWidth(10)].asStackView(spacing: 12, alignment: .top)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.frame = CGRect(x: 32, y: 20, width: screenSize.width - 32 - 25, height: 25)
         stackView.backgroundColor = .clear
         
         let frame = CGRect(x: 0, y: 0, width: 164, height: 186)
         imgView.frame = frame
-        stackView.frame.size.height = 186
-        contentView.addSubview(imgView)
-        contentView.addSubview(stackView)
-        contentView.addSubview(selectedIndicator)
+        //stackView.frame.size.height = 196
+        self.frame.size.height = 196
+        selectedIndicator.frame = CGRect(x: screenSize.width - 75, y: (196/2) - 12, width: 24, height: 24)
+        //background.addSubview(blockieImageView)
+        background.addSubview(imgToken)
+        background.addSubview(imgView)
+        addSubview(stackView)
+        addSubview(selectedIndicator)
+        addSubview(row3)
 
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-            stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -25),
-            selectedIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
-            selectedIndicator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Style.SelectionIndicator.leadingOffset)
+
+//            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+//            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+//            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+//            stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -25),
+//            selectedIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            selectedIndicator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 35),
+            background.anchorsConstraint(to: self, edgeInsets: .init(top: 5, left: 15, bottom: 5, right: 15)),
+            background.heightAnchor.constraint(equalToConstant: 186)
         ])
     }
 
     required init?(coder aDecoder: NSCoder) {
         return nil
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        background.layer.cornerRadius = 8
+        background.layer.masksToBounds = false
+        background.layer.shadowColor = UIColor.gray.cgColor
+        background.layer.shadowPath = UIBezierPath(roundedRect: background.bounds, cornerRadius: background.layer.cornerRadius).cgPath
+        background.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        background.layer.shadowOpacity = 0.4
+        background.layer.shadowRadius = 3.0
+    }
 
     func configure(viewModel: AccountViewModel) {
         cancelable.cancellAll()
 
         backgroundColor = viewModel.backgroundColor
-        accessoryView = Style.AccessoryView.chevron
+        let imageView = UIImageView(image: R.image.moreVertical())
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 24.0),
+            imageView.heightAnchor.constraint(equalToConstant: 24.0)
+        ])
+        accessoryView = imageView //Style.AccessoryView.chevron
         selectedIndicator.isHidden = !viewModel.isSelected
 
         viewModel.addressesAttrinutedString
@@ -85,8 +139,10 @@ class AccountViewCell: UITableViewCell {
             }.store(in: &cancelable)
 
         viewModel.blockieImage
-            .sink { [weak blockieImageView] image in
+            .sink { [weak imgToken, weak blockieImageView] image in
                 blockieImageView?.setBlockieImage(image: image)
+                //blockieImageView?.frame = CGRect(x: 38, y: 56, width: 58, height: 68)
+                imgToken?.image = blockieImageView?.imageView.imageView.image
             }.store(in: &cancelable)
 
         viewModel.balance
@@ -99,141 +155,4 @@ class AccountViewCell: UITableViewCell {
                 apprecation24hourLabel?.attributedText = value
             }.store(in: &cancelable)
     }
-    
-    func setupHexagonImageView(_ imageView: BlockieImageView) {
-        let lineWidth: CGFloat = 0
-        let path = roundedPolygonPath(rect: imageView.bounds, lineWidth: lineWidth, sides: 6, cornerRadius: 10, rotationOffset: CGFloat(Double.pi / 2.0))
-
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        mask.lineWidth = lineWidth
-        mask.strokeColor = UIColor.clear.cgColor
-        mask.fillColor = UIColor.clear.cgColor
-        imageView.layer.mask = mask
-
-        let border = CAShapeLayer()
-        border.path = path.cgPath
-        border.lineWidth = lineWidth
-        border.strokeColor = UIColor.clear.cgColor
-        border.fillColor = UIColor.clear.cgColor
-        imageView.layer.addSublayer(border)
-    }
-    
-    @objc func roundedPolygonPath(rect: CGRect, lineWidth: CGFloat, sides: NSInteger, cornerRadius: CGFloat, rotationOffset: CGFloat = 0)
-    -> UIBezierPath {
-        let path = UIBezierPath()
-        let theta: CGFloat = CGFloat(2.0 * Double.pi) / CGFloat(sides) // How much to turn at every corner
-        let _: CGFloat = cornerRadius * tan(theta / 2.0)     // Offset from which to start rounding corners
-        let width = min(rect.size.width, rect.size.height)        // Width of the square
-        
-        let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
-        
-        // Radius of the circle that encircles the polygon
-        // Notice that the radius is adjusted for the corners, that way the largest outer
-        // dimension of the resulting shape is always exactly the width - linewidth
-        let radius = (width - lineWidth + cornerRadius - (cos(theta) * cornerRadius)) / 2.0
-        
-        // Start drawing at a point, which by default is at the right hand edge
-        // but can be offset
-        var angle = CGFloat(rotationOffset)
-        
-        let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
-        path.move(to: CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta)))
-        
-        for _ in 0 ..< sides {
-            angle += theta
-            
-            let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
-            let tip = CGPoint(x: center.x + radius * cos(angle), y: center.y + radius * sin(angle))
-            let start = CGPoint(x: corner.x + cornerRadius * cos(angle - theta), y: corner.y + cornerRadius * sin(angle - theta))
-            let end = CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta))
-            
-            path.addLine(to: start)
-            path.addQuadCurve(to: end, controlPoint: tip)
-        }
-        
-        path.close()
-        
-        // Move the path to the correct origins
-        let bounds = path.bounds
-        let transform = CGAffineTransform(translationX: -bounds.origin.x + rect.origin.x + lineWidth / 2.0,
-                                          y: -bounds.origin.y + rect.origin.y + lineWidth / 2.0)
-        path.apply(transform)
-        
-        return path
-    }
 }
-
-//extension UIView {
-//
-//    /// Set the view layer as an hexagon
-//    func setupHexagonView() {
-//        let lineWidth: CGFloat = 5
-//        let path = self.roundedPolygonPath(rect: self.bounds, lineWidth: lineWidth, sides: 6, cornerRadius: 10, rotationOffset: CGFloat(.pi / 2.0))
-//
-//        let mask = CAShapeLayer()
-//        mask.path = path.cgPath
-//        mask.lineWidth = lineWidth
-//        mask.strokeColor = UIColor.clear.cgColor
-//        mask.fillColor = UIColor.white.cgColor
-//        self.layer.mask = mask
-//
-//        let border = CAShapeLayer()
-//        border.path = path.cgPath
-//        border.lineWidth = lineWidth
-//        border.strokeColor = UIColor.white.cgColor
-//        border.fillColor = UIColor.clear.cgColor
-//        self.layer.addSublayer(border)
-//    }
-//
-//    /// Makes a bezier path which can be used for a rounded polygon
-//    /// layer
-//    ///
-//    /// - Parameters:
-//    ///   - rect: uiview rect bounds
-//    ///   - lineWidth: width border line
-//    ///   - sides: number of polygon's sides
-//    ///   - cornerRadius: radius for corners
-//    ///   - rotationOffset: offset of rotation of the view
-//    /// - Returns: the newly created bezier path for layer mask
-//    public func roundedPolygonPath(rect: CGRect, lineWidth: CGFloat, sides: NSInteger, cornerRadius: CGFloat, rotationOffset: CGFloat = 0) -> UIBezierPath {
-//        let path = UIBezierPath()
-//        let theta: CGFloat = CGFloat(2.0 * .pi) / CGFloat(sides) // How much to turn at every corner
-//        let width = min(rect.size.width, rect.size.height)        // Width of the square
-//
-//        let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
-//
-//        // Radius of the circle that encircles the polygon
-//        // Notice that the radius is adjusted for the corners, that way the largest outer
-//        // dimension of the resulting shape is always exactly the width - linewidth
-//        let radius = (width - lineWidth + cornerRadius - (cos(theta) * cornerRadius)) / 2.0
-//
-//        // Start drawing at a point, which by default is at the right hand edge
-//        // but can be offset
-//        var angle = CGFloat(rotationOffset)
-//
-//        let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
-//        path.move(to: CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta)))
-//
-//        for _ in 0..<sides {
-//            angle += theta
-//
-//            let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
-//            let tip = CGPoint(x: center.x + radius * cos(angle), y: center.y + radius * sin(angle))
-//            let start = CGPoint(x: corner.x + cornerRadius * cos(angle - theta), y: corner.y + cornerRadius * sin(angle - theta))
-//            let end = CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta))
-//
-//            path.addLine(to: start)
-//            path.addQuadCurve(to: end, controlPoint: tip)
-//        }
-//
-//        path.close()
-//
-//        // Move the path to the correct origins
-//        let bounds = path.bounds
-//        let transform = CGAffineTransform(translationX: -bounds.origin.x + rect.origin.x + lineWidth / 2.0, y: -bounds.origin.y + rect.origin.y + lineWidth / 2.0)
-//        path.apply(transform)
-//
-//        return path
-//    }
-//}

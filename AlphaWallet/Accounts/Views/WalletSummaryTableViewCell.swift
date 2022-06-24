@@ -9,7 +9,7 @@ import UIKit
 
 class WalletSummaryTableViewCell: UITableViewCell {
     
-    private let summaryView: WalletSummaryView = .init()
+    private let summaryView: WalletSummaryView = .init(edgeInsets: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20), spacing: 0)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

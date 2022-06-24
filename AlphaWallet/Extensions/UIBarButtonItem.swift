@@ -69,6 +69,10 @@ extension UIBarButtonItem {
     static func cancelBarButton(_ target: AnyObject, selector: Selector) -> UIBarButtonItem {
         return .init(barButtonSystemItem: .cancel, target: target, action: selector)
     }
+    
+    static func arBarButton(_ target: AnyObject, selector: Selector) -> UIBarButtonItem {
+        return .init(image: R.image.arIcon(), style: .plain, target: target, action: selector)
+    }
 
     static func closeBarButton(_ target: AnyObject, selector: Selector) -> UIBarButtonItem {
         return .init(image: R.image.close(), style: .plain, target: target, action: selector)

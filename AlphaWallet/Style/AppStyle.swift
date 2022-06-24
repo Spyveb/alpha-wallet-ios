@@ -134,19 +134,19 @@ struct StyleLayout {
 
 struct Fonts {
     static func light(size: CGFloat) -> UIFont {
-        return UIFont(resource: R.font.sourceSansProLight, size: size)!
+        return UIFont(resource: R.font.nunitoLight, size: size)!
     }
     static func italic(size: CGFloat) -> UIFont {
-        return UIFont(resource: R.font.sourceSansProItalic, size: size)!
+        return UIFont(resource: R.font.nunitoItalic, size: size)!
     }
     static func regular(size: CGFloat) -> UIFont {
-        return UIFont(resource: R.font.sourceSansProRegular, size: size)!
+        return UIFont(resource: R.font.nunitoRegular, size: size)!
     }
     static func semibold(size: CGFloat) -> UIFont {
-        return UIFont(resource: R.font.sourceSansProSemibold, size: size)!
+        return UIFont(resource: R.font.nunitoSemiBold, size: size)!
     }
     static func bold(size: CGFloat) -> UIFont {
-        return UIFont(resource: R.font.sourceSansProBold, size: size)!
+        return UIFont(resource: R.font.nunitoBold, size: size)!
     }
     static let tableHeader = Fonts.semibold(size: 15)
 }
@@ -377,7 +377,7 @@ enum Style {
             static let height = 45.0
             static let backgroundColor = R.color.alabaster()
             static let textColor = R.color.dove()
-            static let font = R.font.sourceSansProSemibold(size: 15.0)
+            static let font = Fonts.semibold(size: 15.0)
         }
         enum Row {
             static let height = 80.0
@@ -418,8 +418,8 @@ enum Style {
             static let color: UIColor = R.color.mercury()!
         }
         enum Font {
-            static let normal: UIFont = R.font.sourceSansProRegular(size: 13.0)!
-            static let selected: UIFont = R.font.sourceSansProSemibold(size: 13.0)!
+            static let normal: UIFont = Fonts.regular(size: 13.0)
+            static let selected: UIFont = Fonts.semibold(size: 13.0)
             enum Color {
                 static let selected: UIColor = R.color.azure()!
                 static let normal: UIColor = R.color.dove()!
@@ -454,7 +454,7 @@ enum Style {
     enum Search {
         enum Network {
             enum Empty {
-                static let font = R.font.sourceSansProRegular(size: 17.0)
+                static let font = Fonts.regular(size: 17.0)
                 static let color: UIColor = R.color.mine()!
                 static let text: String = R.string.localizable.searchNetworkResultEmpty()
             }
@@ -466,7 +466,7 @@ enum Style {
     }
     enum ScrollableSegmentedControlCell {
         //static let configuration = ScrollableSegmentedControlCellConfiguration(backgroundColor: .white, highlightedTextColor: R.color.azure()!, nonHighlightedTextColor: R.color.dove()!, highlightedFont: R.font.sourceSansProSemibold(size: 15.0)!, nonHighlightedFont: R.font.sourceSansProRegular(size: 15.0)!, cellPadding: 8.0, textBottomPadding: 12.0)
-        static let configuration = ScrollableSegmentedControlCellConfiguration(backgroundColor: R.color.azure()!, highlightedTextColor: .white, nonHighlightedTextColor: .black, highlightedFont: R.font.sourceSansProSemibold(size: 16.0)!, nonHighlightedFont: R.font.sourceSansProRegular(size: 16.0)!, cellPadding: 8.0, textBottomPadding: 12.0)
+        static let configuration = ScrollableSegmentedControlCellConfiguration(backgroundColor: R.color.azure()!, highlightedTextColor: .white, nonHighlightedTextColor: .black, highlightedFont: Fonts.semibold(size: 16.0), nonHighlightedFont: Fonts.regular(size: 16.0), cellPadding: 8.0, textBottomPadding: 12.0)
     }
     enum value {
         static let appreciated: UIColor = R.color.green()!

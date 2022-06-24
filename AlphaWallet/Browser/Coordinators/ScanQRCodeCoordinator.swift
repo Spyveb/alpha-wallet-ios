@@ -15,7 +15,7 @@ final class ScanQRCodeCoordinator: NSObject, Coordinator {
     private lazy var navigationController = UINavigationController(rootViewController: qrcodeController)
     private lazy var reader = QRCodeReader(metadataObjectTypes: [AVMetadataObject.ObjectType.qr])
     private lazy var qrcodeController: QRCodeReaderViewController = {
-        let shouldShowMyQRCodeButton = account != nil
+        let shouldShowMyQRCodeButton = false//account != nil
         let controller = QRCodeReaderViewController(
             cancelButtonTitle: nil,
             codeReader: reader,
@@ -35,6 +35,7 @@ final class ScanQRCodeCoordinator: NSObject, Coordinator {
         controller.delegate = self
         controller.title = R.string.localizable.browserScanQRCodeTitle()
         controller.navigationItem.leftBarButtonItem = UIBarButtonItem.cancelBarButton(self, selector: #selector(dismiss))
+        controller.navigationItem.rightBarButtonItem = UIBarButtonItem.arBarButton(self, selector: #selector(openARView))
         controller.delegate = self
 
         return controller
@@ -63,10 +64,22 @@ final class ScanQRCodeCoordinator: NSObject, Coordinator {
             self.delegate?.didCancel(in: self)
         }
     }
+    
+    @objc private func openARView() {
+        //stopScanner {
+            let sb = UIStoryboard.init(name: "AR", bundle: nil)
+            let vc = sb.instantiateInitialViewController() as! ARVC
+            self.navigationController.pushViewController(vc, animated: true)
+        //}
+    }
 
     private func stopScannerAndDismiss(completion: @escaping () -> Void) {
         reader.stopScanning()
         navigationController.dismiss(animated: true, completion: completion)
+    }
+    
+    private func stopScanner(completion: @escaping () -> Void) {
+        reader.stopScanning()
     }
 }
 

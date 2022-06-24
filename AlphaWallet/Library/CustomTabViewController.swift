@@ -10,12 +10,14 @@ import UIKit
 
 class CustomTabViewController: UITabBarController {
 
+    var kBarHeight: CGFloat = 60
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let myTabbar = tabBar as? STTabbar {
             myTabbar.centerButtonActionHandler = {
-                print("Center Button Tapped")
+                //print("Center Button Tapped")
                 
                 let vc = (self.viewControllers![0] as! UINavigationController).viewControllers[0] as! TokensViewController
                 
@@ -28,5 +30,12 @@ class CustomTabViewController: UITabBarController {
                 }
             }
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        tabBar.frame.size.height = kBarHeight
+        tabBar.frame.origin.y = view.frame.height - kBarHeight
     }
 }

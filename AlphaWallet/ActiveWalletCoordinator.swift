@@ -260,6 +260,11 @@ class ActiveWalletCoordinator: NSObject, Coordinator, DappRequestHandlerDelegate
         navigationController.setViewControllers([accountsCoordinator.accountsViewController], animated: false)
         navigationController.pushViewController(tabBarController, animated: animated)
 
+        for tab in tabBarController.tabBar.items! {
+            tab.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            tab.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 6)
+        }
+        
         navigationController.setNavigationBarHidden(true, animated: false)
 
         let inCoordinatorViewModel = InCoordinatorViewModel()
@@ -394,6 +399,8 @@ class ActiveWalletCoordinator: NSObject, Coordinator, DappRequestHandlerDelegate
 //            coordinator.navigationController.configureForLargeTitles()
 //            addCoordinator(coordinator)
             let nav = UINavigationController(rootViewController: vc)
+            vc.navigationItem.rightBarButtonItem = UIBarButtonItem.addButton(accountsCoordinator, selector: #selector(accountsCoordinator.addWallet))
+            
             viewControllers.append(nav)
         } else {
             viewControllers.append(transactionCoordinator.navigationController)

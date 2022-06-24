@@ -65,18 +65,18 @@ extension SettingsViewModel.functional {
         let walletRows: [SettingsWalletRow]
         if account.allowBackup {
             if keystore.isHdWallet(wallet: account) {
-                walletRows = [.showMyWallet, .changeWallet, .backup, .showSeedPhrase, .nameWallet, .walletConnect, .blockscanChat(blockscanChatUnreadCount: blockscanChatUnreadCount)]
+                walletRows = [.showMyWallet, .changeWallet, .backup, .showSeedPhrase, .nameWallet, .walletConnect]
             } else {
-                walletRows = [.showMyWallet, .changeWallet, .backup, .nameWallet, .walletConnect, .blockscanChat(blockscanChatUnreadCount: blockscanChatUnreadCount)]
+                walletRows = [.showMyWallet, .changeWallet, .backup, .nameWallet, .walletConnect]
             }
         } else {
-            walletRows = [.showMyWallet, .changeWallet, .nameWallet, .walletConnect, .blockscanChat(blockscanChatUnreadCount: blockscanChatUnreadCount)]
+            walletRows = [.showMyWallet, .changeWallet, .nameWallet, .walletConnect]
         }
-        let systemRows: [SettingsSystemRow] = [.passcode, .selectActiveNetworks, .advanced]
+        let systemRows: [SettingsSystemRow] = [.passcode, .selectActiveNetworks]
         return [
             .wallet(rows: walletRows),
             .system(rows: systemRows),
-            .help,
+            //.help,
             .version(value: Bundle.main.fullVersion),
             .tokenStandard(value: "\(TokenScript.supportedTokenScriptNamespaceVersion)")
         ]

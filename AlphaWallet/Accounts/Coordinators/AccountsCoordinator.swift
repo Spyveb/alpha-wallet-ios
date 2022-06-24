@@ -103,7 +103,7 @@ class AccountsCoordinator: Coordinator {
         delegate?.didCancel(in: self)
     }
 
-    @objc private func addWallet() {
+    @objc func addWallet() {
         guard let barButtonItem = accountsViewController.navigationItem.rightBarButtonItem else { return }
         UIAlertController.alert(title: nil,
                 message: nil,

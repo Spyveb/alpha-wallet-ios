@@ -127,24 +127,46 @@ class TokensCoordinator: Coordinator {
         promptBackupCoordinator.prominentPromptDelegate = self
         setupSingleChainTokenCoordinators()
 
-        let moreBarButton = UIBarButtonItem.moreBarButton(self, selector: #selector(moreButtonSelected))
-        let qrCodeBarButton = UIBarButtonItem.myqrCodeBarButton(self, selector: #selector(showMyQRCodeButtonSelected))
-        let myActivityBarButton = UIBarButtonItem.myActivityBarButton(self, selector: #selector(myActivityButtonSelected))
-        moreBarButton.imageInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
-        qrCodeBarButton.imageInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
-        myActivityBarButton.imageInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+        let view = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 106, height: 44)))
+        let  btn = UIButton(frame: CGRect(x: 0, y: 7, width: 30, height: 30))
+        btn.setImage(R.image.myActivity()?.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.addTarget(self, action: #selector(myActivityButtonSelected), for: .touchUpInside)
+        view.addSubview(btn)
 
-        tokensViewController.navigationItem.rightBarButtonItems = [
-            moreBarButton,
-            qrCodeBarButton,
-            myActivityBarButton
-        ]
+        let  btn2 = UIButton(frame: CGRect(x: 38, y: 7, width: 30, height: 30))
+        btn2.setImage(R.image.qrRoundedWhite()?.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn2.contentMode = .scaleAspectFit
+        btn2.addTarget(self, action: #selector(showMyQRCodeButtonSelected), for: .touchUpInside)
+        view.addSubview(btn2)
+        
+        let  btn3 = UIButton(frame: CGRect(x: 76, y: 7, width: 30, height: 30))
+        btn3.setImage(R.image.toolbarMenu(), for: .normal)
+        btn3.contentMode = .scaleAspectFit
+        btn3.addTarget(self, action: #selector(moreButtonSelected), for: .touchUpInside)
+        view.addSubview(btn3)
+
+        let itemsContainer = UIBarButtonItem(customView: view)
+        tokensViewController.navigationItem.rightBarButtonItems = [itemsContainer]
+        
+//        let moreBarButton = UIBarButtonItem.moreBarButton(self, selector: #selector(moreButtonSelected))
+//        let qrCodeBarButton = UIBarButtonItem.myqrCodeBarButton(self, selector: #selector(showMyQRCodeButtonSelected))
+//        let myActivityBarButton = UIBarButtonItem.myActivityBarButton(self, selector: #selector(myActivityButtonSelected))
+//        moreBarButton.imageInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+//        qrCodeBarButton.imageInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+//        myActivityBarButton.imageInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+//
+//        tokensViewController.navigationItem.rightBarButtonItems = [
+//            moreBarButton,
+//            qrCodeBarButton,
+//            myActivityBarButton
+//        ]
         tokensViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: tokensViewController.blockieImageView)
         tokensViewController.blockieImageView.addTarget(self, action: #selector(blockieButtonSelected), for: .touchUpInside)
     }
 
     @objc private func blockieButtonSelected(_ sender: UIButton) {
-        delegate?.blockieSelected(in: self)
+        //delegate?.blockieSelected(in: self)
+        tokensViewController.tabBarController?.selectedIndex = 1
     }
 
     @objc private func showMyQRCodeButtonSelected(_ sender: UIBarButtonItem) {
